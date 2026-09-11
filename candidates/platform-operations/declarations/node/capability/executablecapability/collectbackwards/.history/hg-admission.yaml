@@ -1,0 +1,11 @@
+declaration_path: "node/capability/executablecapability/collectbackwards"
+disposition: "admitted"
+distinction: "CollectBackwards denotes the executable morphism CollectBackwards(projection), which collects values by traversing the selected HG bindings retained in the input projection in their backward direction. It is distinct from forward collection and from one-step navigation."
+generic_warrant: "Backward collection is necessary wherever a projection traverses the derived inverse of admitted relationships while retaining the same projection context, authority, and non-mutating traversal semantics."
+supports:
+  - "guarantee:Collects only the selection retained in the input Projection, preserving HG binding, owner and traversal provenance."
+  - "input_port:projection"
+  - "output_port:result"
+  - "guarantee:Returns only values reachable through admitted backward traversal in the projection context."
+  - "guarantee:Returns exactly one SemanticProjection as the collection result."
+  - "guarantee:Does not materialise or mutate HG instances merely by collecting."

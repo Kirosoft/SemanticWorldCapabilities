@@ -1,0 +1,181 @@
+description: "Executable capability that coordinates an ExecutableProcess according to its admitted semantic definition and applicable policy."
+input_ports:
+  - name: "invocation"
+    role: "requirement"
+    cardinality: {"min": 1, "max": 1}
+    value:
+      kind: "structured"
+      members:
+        - name: "process"
+          role: "selected"
+          cardinality: {"min": 1, "max": 1}
+          value:
+            kind: "reference"
+            target:
+              kind: "declaration"
+              type: "node/process/executableprocess"
+        - name: "interface_digest"
+          role: "revision"
+          cardinality: {"min": 1, "max": 1}
+          constraints: {"min_length": 64, "max_length": 64, "pattern": "^[0-9a-f]{64}$"}
+          value: {"kind": "text", "semantic_type": "property/identifier"}
+        - name: "arguments"
+          role: "input"
+          cardinality: {"min": 1, "max": 1}
+          value:
+            kind: "process_interface"
+            selector: "process"
+            digest_selector: "interface_digest"
+            facet: "input"
+        - name: "action"
+          role: "selected"
+          cardinality: {"min": 1, "max": 1}
+          value:
+            kind: "variant"
+            members:
+              - name: "start"
+                role: "initial"
+                cardinality: {"min": 1, "max": 1}
+                value:
+                  kind: "structured"
+                  members:
+                    - name: "mode"
+                      role: "classifier"
+                      cardinality: {"min": 1, "max": 1}
+                      constraints: {"allowed_values": ["start"]}
+                      value: {"kind": "text", "semantic_type": "property/classifier"}
+              - name: "resume"
+                role: "remaining"
+                cardinality: {"min": 1, "max": 1}
+                value:
+                  kind: "structured"
+                  members:
+                    - name: "continuation"
+                      role: "initial"
+                      cardinality: {"min": 1, "max": 1}
+                      value:
+                        kind: "process_interface"
+                        selector: "invocation.process"
+                        digest_selector: "invocation.interface_digest"
+                        input_selector: "invocation.arguments"
+                        facet: "suspended"
+                    - name: "resolution"
+                      role: "result"
+                      cardinality: {"min": 1, "max": 1}
+                      value:
+                        kind: "variant"
+                        members:
+                          - name: "success"
+                            role: "result"
+                            cardinality: {"min": 1, "max": 1}
+                            value:
+                              kind: "structured"
+                              members:
+                                - name: "output"
+                                  role: "output"
+                                  cardinality: {"min": 1, "max": 1}
+                                  value:
+                                    kind: "capability_interface"
+                                    selector: "invocation.action.resume.continuation.pending.capability"
+                                    digest_selector: "invocation.action.resume.continuation.pending.interface_digest"
+                                    input_selector: "invocation.action.resume.continuation.pending.arguments"
+                                    facet: "output"
+                          - name: "failure"
+                            role: "result"
+                            cardinality: {"min": 1, "max": 1}
+                            value:
+                              kind: "capability_interface"
+                              selector: "invocation.action.resume.continuation.pending.capability"
+                              digest_selector: "invocation.action.resume.continuation.pending.interface_digest"
+                              input_selector: "invocation.action.resume.continuation.pending.arguments"
+                              facet: "failure"
+output_ports:
+  - name: "result"
+    role: "result"
+    cardinality: {"min": 1, "max": 1}
+    value:
+      kind: "variant"
+      members:
+        - name: "completed"
+          role: "result"
+          cardinality: {"min": 1, "max": 1}
+          value:
+            kind: "structured"
+            members:
+              - name: "output"
+                role: "output"
+                cardinality: {"min": 1, "max": 1}
+                value:
+                  kind: "process_interface"
+                  selector: "invocation.process"
+                  digest_selector: "invocation.interface_digest"
+                  input_selector: "invocation.arguments"
+                  facet: "output"
+              - name: "execution"
+                role: "result"
+                cardinality: {"min": 1, "max": 1}
+                value:
+                  kind: "process_interface"
+                  selector: "invocation.process"
+                  digest_selector: "invocation.interface_digest"
+                  input_selector: "invocation.arguments"
+                  facet: "completed"
+        - name: "suspended"
+          role: "result"
+          cardinality: {"min": 1, "max": 1}
+          value:
+            kind: "structured"
+            members:
+              - name: "execution"
+                role: "remaining"
+                cardinality: {"min": 1, "max": 1}
+                value:
+                  kind: "process_interface"
+                  selector: "invocation.process"
+                  digest_selector: "invocation.interface_digest"
+                  input_selector: "invocation.arguments"
+                  facet: "suspended"
+        - name: "failed"
+          role: "result"
+          cardinality: {"min": 1, "max": 1}
+          value:
+            kind: "structured"
+            members:
+              - name: "execution"
+                role: "result"
+                cardinality: {"min": 1, "max": 1}
+                value:
+                  kind: "process_interface"
+                  selector: "invocation.process"
+                  digest_selector: "invocation.interface_digest"
+                  input_selector: "invocation.arguments"
+                  facet: "failed"
+failures:
+  - name: "failure"
+    role: "result"
+    cardinality: {"min": 1, "max": 1}
+    value:
+      kind: "structured"
+      members:
+        - name: "kind"
+          role: "classifier"
+          cardinality: {"min": 1, "max": 1}
+          constraints:
+            allowed_values: ["binding_unavailable", "definition_invalid", "input_invalid", "interface_stale", "policy_rejected", "result_invalid"]
+          value: {"kind": "text", "semantic_type": "property/classifier"}
+        - name: "reason"
+          role: "reason"
+          cardinality: {"min": 1, "max": null}
+          collection_semantics: "sequence"
+          constraints: {"min_length": 1}
+          value: {"kind": "text", "semantic_type": "property/descriptive"}
+external_io: false
+policies: []
+guarantees:
+  - "Handles only an ExecutableProcess whose admitted semantic definition and applicable policy are satisfied."
+  - "Composes HG-typed outputs from Process steps without materialising them merely by handling."
+  - "Suspends only at an admitted external Capability and resumes from the exact immutable Process state and Capability result."
+  - "Does not confer mutation authority; materialisation remains subject to protected authorisation."
+groups:
+  - "kernel"
+domain: "system"

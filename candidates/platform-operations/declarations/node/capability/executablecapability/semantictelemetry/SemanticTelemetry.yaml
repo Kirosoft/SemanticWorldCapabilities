@@ -1,0 +1,7 @@
+description: "Executable capability that records or delivers external observations of a successfully materialised semantic change without materialising further HG changes."
+guarantees:
+  - "Performs no semantic materialisation or mutation of HG instances."
+  - "Emits observations only for a successfully materialised semantic change."
+groups:
+  - "kernel"
+domain: "platform"

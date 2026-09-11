@@ -1,0 +1,12 @@
+declaration_path: "node/capability/executablecapability/handleprocess"
+disposition: "admitted"
+distinction: "HandleProcess denotes the executable morphism that coordinates an ExecutableProcess as one semantic operation. It is distinct from ExecuteCapability, which dispatches an individual executable capability, and from ApplySemanticEffect, which materialises proposed changes under SemanticStore authority."
+generic_warrant: "Coordinating reified processes while preserving their admitted semantics, policy constraints, accumulated outputs, and separation from authorised materialisation recurs across workflows, jobs, automations, services, and human-in-the-loop operations."
+supports:
+  - "input_port:invocation"
+  - "output_port:result"
+  - "failure:failure"
+  - "guarantee:Handles only an ExecutableProcess whose admitted semantic definition and applicable policy are satisfied."
+  - "guarantee:Composes HG-typed outputs from Process steps without materialising them merely by handling."
+  - "guarantee:Suspends only at an admitted external Capability and resumes from the exact immutable Process state and Capability result."
+  - "guarantee:Does not confer mutation authority; materialisation remains subject to protected authorisation."

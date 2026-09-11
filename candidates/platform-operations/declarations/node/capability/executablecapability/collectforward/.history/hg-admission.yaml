@@ -1,0 +1,11 @@
+declaration_path: "node/capability/executablecapability/collectforward"
+disposition: "admitted"
+distinction: "CollectForward denotes the executable morphism CollectForward(projection), which collects values by following the selected HG bindings retained in the input projection in their forward direction. It is distinct from backward traversal and from one-step navigation."
+generic_warrant: "Forward collection over the selected HG bindings retained in the input projection recurs across query, API, user-interface, and runtime implementations and must preserve the projection context and the non-mutating character of traversal."
+supports:
+  - "guarantee:Collects only the selection retained in the input Projection, preserving HG binding, owner and traversal provenance."
+  - "input_port:projection"
+  - "output_port:result"
+  - "guarantee:Returns only values reachable through admitted forward traversal in the projection context."
+  - "guarantee:Returns exactly one SemanticProjection as the collection result."
+  - "guarantee:Does not materialise or mutate HG instances merely by collecting."

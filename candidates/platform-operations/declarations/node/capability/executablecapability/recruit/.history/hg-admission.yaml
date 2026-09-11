@@ -1,0 +1,11 @@
+declaration_path: "node/capability/executablecapability/recruit"
+disposition: "admitted"
+distinction: "Recruit denotes the executable capability that finds candidates from the semantically reachable HG graph under contextual constraints. It is distinct from selection, which chooses among candidates for an intent, and from admission or materialisation, which may change HG authority or instances."
+generic_warrant: "Semantic recruitment recurs wherever a demand must discover candidate instances, types, capabilities, or processes from an HG-defined world while preserving reachability, scope, policy, capability, and demand constraints independently of search index or runtime implementation."
+supports:
+  - "input_port:demand"
+  - "output_port:result"
+  - "guarantee:Begins recruitment from the semantically reachable HG graph."
+  - "guarantee:Applies applicable scope, policy, capability, and demand constraints before returning candidates."
+  - "guarantee:Returns exactly one SemanticProjection as the recruited result."
+  - "guarantee:Does not admit, materialise, or mutate HG instances merely by recruiting."

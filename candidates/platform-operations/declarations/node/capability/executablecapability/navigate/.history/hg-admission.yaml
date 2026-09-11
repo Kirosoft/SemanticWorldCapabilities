@@ -1,0 +1,12 @@
+declaration_path: "node/capability/executablecapability/navigate"
+disposition: "admitted"
+distinction: "Navigate denotes the executable morphism Navigate(selection), which performs one navigation step through an HG binding and endpoint currently navigable in a SemanticProjection. It is distinct from the collection morphisms, which gather values across one or more properties."
+generic_warrant: "Single-step navigation through a property valid in the current projection context recurs across every executable projection surface and must preserve HG authority, context, and the non-mutating character of traversal independently of its user interface, API, query, or runtime implementation."
+supports:
+  - "input_port:projection"
+  - "input_port:selection"
+  - "output_port:result"
+  - "guarantee:Accepts only a binding and endpoint currently navigable in the retained projection context."
+  - "guarantee:Preserves the selected HG binding, endpoint and relationship direction independently of loaded values."
+  - "guarantee:Returns exactly one SemanticProjection as the navigation result."
+  - "guarantee:Does not materialise or mutate HG instances merely by navigating."

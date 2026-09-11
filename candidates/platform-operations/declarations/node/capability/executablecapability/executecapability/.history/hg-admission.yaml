@@ -1,0 +1,11 @@
+declaration_path: "node/capability/executablecapability/executecapability"
+disposition: "admitted"
+distinction: "ExecuteCapability denotes the generic execution morphism of an ExecutableCapability. It is distinct from the executable capability being invoked, which declares the function contract and implementation binding, and from ApplySemanticEffect, which alone materialises proposed changes under SemanticStore authority."
+generic_warrant: "Dispatching an admitted executable capability through a runtime implementation recurs across every platform, application, automation, integration, and external-service implementation while preserving the generic function contract and separating proposed changes from their authorised materialisation."
+supports:
+  - "input_port:invocation"
+  - "output_port:result"
+  - "failure:failure"
+  - "guarantee:Invokes only an admitted executable capability whose inputs, outputs, policy, and implementation binding are satisfied."
+  - "guarantee:Returns the selected Capability's HG-typed outputs without a separate Effect channel."
+  - "guarantee:Does not confer mutation authority; materialisation remains subject to protected authorisation."

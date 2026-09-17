@@ -1,0 +1,6 @@
+hg_path = "node/capability/executablecapability/proposecompanytaxnumber"
+entry_file = "implementation.py"
+function = "propose_company_tax_number"
+files = ["implementation.py"]
+tests = ["test_implementation.py"]
+rationale = "Produces an inert text Effect for the exact HG-bound Company with TaxNumber meaning. HG Capability text validation does not establish Property normalisation or constraints. No update operation, policy decision, admission or World write is performed. Subject lowering supplies only the trusted ref and node_type."

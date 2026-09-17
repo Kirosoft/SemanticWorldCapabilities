@@ -1,0 +1,13 @@
+[
+  {
+    "id": "ProposeCompanyTaxNumberUpdate",
+    "axis": "node", "domain": "app", "authoritative": false, "refines": "Capability",
+    "path": "node/capability/proposecompanytaxnumberupdate",
+    "description": "Returns the canonical TaxNumber supplied for the recruited Company TaxNumber occurrence. The typed output cannot change the target, materialise a replacement or grant authority.",
+    "inputs": [
+      {"type": "node/component/propertyoccurrence", "cardinality": {"min": 1, "max": 1}},
+      {"type": "property/identifier/taxnumber", "cardinality": {"min": 1, "max": 1}}
+    ],
+    "outputs": [{"type": "property/identifier/taxnumber", "cardinality": {"min": 1, "max": 1}}]
+  }
+]

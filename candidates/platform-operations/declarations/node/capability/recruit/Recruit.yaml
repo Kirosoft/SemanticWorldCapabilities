@@ -1,0 +1,258 @@
+description: "Capability that recruits candidate HG instances, types, capabilities, or processes from the semantically reachable graph under applicable scope, policy, capability, and demand constraints."
+input_ports:
+  - name: "demand"
+    role: "requirement"
+    cardinality: {"min": 1, "max": 1}
+    value:
+      kind: "structured"
+      members:
+        - name: "query"
+          role: "requirement"
+          cardinality: {"min": 0, "max": 1}
+          value:
+            kind: "structured"
+            members:
+              - name: "variables"
+                role: "required"
+                cardinality:
+                  min: 1
+                  max: null
+                value:
+                  kind: "structured"
+                  members:
+                    - name: "name"
+                      role: "required"
+                      cardinality:
+                        min: 1
+                        max: 1
+                      value:
+                        kind: "text"
+                        semantic_type: "property/identifier"
+                    - name: "type"
+                      role: "required"
+                      cardinality:
+                        min: 1
+                        max: 1
+                      value:
+                        kind: "reference"
+                        target:
+                          kind: "declaration"
+                          axes: ["node"]
+                    - name: "instance"
+                      role: "required"
+                      cardinality:
+                        min: 0
+                        max: 1
+                      value:
+                        kind: "reference"
+                        target:
+                          kind: "instance"
+                          axes: ["node"]
+                    - name: "property_type"
+                      role: "required"
+                      cardinality:
+                        min: 0
+                        max: 1
+                      value:
+                        kind: "reference"
+                        target:
+                          kind: "declaration"
+                          axes: ["property"]
+                collection_semantics: "sequence"
+              - name: "relationships"
+                role: "required"
+                cardinality:
+                  min: 0
+                  max: null
+                value:
+                  kind: "structured"
+                  members:
+                    - name: "source"
+                      role: "required"
+                      cardinality:
+                        min: 1
+                        max: 1
+                      value:
+                        kind: "text"
+                        semantic_type: "property/identifier"
+                    - name: "relationship"
+                      role: "required"
+                      cardinality:
+                        min: 1
+                        max: 1
+                      value:
+                        kind: "reference"
+                        target:
+                          kind: "declaration"
+                          axes: ["edge"]
+                    - name: "target"
+                      role: "required"
+                      cardinality:
+                        min: 1
+                        max: 1
+                      value:
+                        kind: "text"
+                        semantic_type: "property/identifier"
+                    - name: "binding"
+                      role: "required"
+                      cardinality:
+                        min: 0
+                        max: 1
+                      value:
+                        kind: "reference"
+                        target:
+                          kind: "property_binding"
+                collection_semantics: "sequence"
+              - name: "project"
+                role: "required"
+                cardinality:
+                  min: 1
+                  max: null
+                value:
+                  kind: "text"
+                  semantic_type: "property/identifier"
+                collection_semantics: "sequence"
+        - name: "classification_group"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "classification_group"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "authority_domain"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "authority_domain"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "definition"
+          role: "exact"
+          value:
+            kind: "reference"
+            target: {"kind": "declaration", "axes": ["node", "edge", "property"]}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "genus"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "declaration", "axes": ["node", "edge", "property"]}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "guarantee"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "guarantee"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "relationship_binding"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "relationship_binding"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "value"
+          role: "exact"
+          value:
+            kind: "reference"
+            target: {"kind": "instance", "axes": ["node"]}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "value_type"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "declaration", "axes": ["property"]}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "occurrence"
+          role: "exact"
+          value:
+            kind: "reference"
+            target: {"kind": "instance", "type": "node/component/propertyoccurrence"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "occurrence_type"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "declaration", "type": "node/component/propertyoccurrence"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "occurrence_subject"
+          role: "required"
+          value:
+            kind: "reference"
+            target: {"kind": "instance", "axes": ["node"]}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "relationship_traversal"
+          role: "required"
+          value:
+            kind: "structured"
+            members:
+              - name: "endpoint"
+                role: "source"
+                value:
+                  kind: "reference"
+                  target: {"kind": "instance", "axes": ["node"]}
+                cardinality: {"min": 1, "max": 1}
+              - name: "relationship_binding"
+                role: "selected"
+                value:
+                  kind: "reference"
+                  target: {"kind": "relationship_binding"}
+                cardinality: {"min": 1, "max": 1}
+              - name: "traversal"
+                role: "direction"
+                value: {"kind": "text", "semantic_type": "property/classifier"}
+                cardinality: {"min": 1, "max": 1}
+                constraints:
+                  allowed_values: ["source_to_target", "target_to_source"]
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "scope_subject"
+          role: "visible"
+          value:
+            kind: "reference"
+            target: {"kind": "instance", "axes": ["node"]}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "permitted_policy"
+          role: "permitted"
+          value:
+            kind: "reference"
+            target: {"kind": "declaration", "type": "node/policy"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "denied_policy"
+          role: "denied"
+          value:
+            kind: "reference"
+            target: {"kind": "declaration", "type": "node/policy"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+        - name: "instant"
+          role: "eligibility"
+          value: {"kind": "temporal", "semantic_type": "property/temporal"}
+          cardinality: {"min": 0, "max": null}
+          collection_semantics: "set"
+output_ports:
+  - name: "result"
+    role: "result"
+    cardinality: {"min": 1, "max": 1}
+    value: {"kind": "subject", "semantic_type": "node/projection"}
+failures: []
+external_io: false
+policies: []
+guarantees:
+  - "Begins recruitment from the semantically reachable HG graph."
+  - "Applies applicable scope, policy, capability, and demand constraints before returning candidates."
+  - "Returns exactly one Projection as the recruited result."
+  - "Does not admit, materialise, or mutate HG instances merely by recruiting."
+groups:
+  - "kernel"
+domain: "platform"

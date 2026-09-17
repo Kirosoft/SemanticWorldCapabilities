@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ProposedInvoiceReference",
+    "axis": "property",
+    "refines": "Identifier",
+    "domain": "app",
+    "authoritative": false,
+    "path": "property/identifier/proposedinvoicereference",
+    "description": "Stable proposed identity for an Invoice creation request; it does not assert that the Invoice instance exists.",
+    "value_domain": {
+      "kind": "literal",
+      "primitive": "primitives/text"
+    },
+    "constraints": {
+      "min_length": 1
+    }
+  },
+  {
+    "id": "ProposeInvoiceCreation",
+    "axis": "node",
+    "refines": "Capability",
+    "domain": "app",
+    "authoritative": false,
+    "path": "node/capability/proposeinvoicecreation",
+    "description": "Validates a proposed Invoice reference as a typed result; protected interpretation materializes the Invoice with HG-generated bindings.",
+    "inputs": [
+      {
+        "type": "property/identifier/proposedinvoicereference",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "type": "property/identifier/proposedinvoicereference",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "policies": []
+  }
+]

@@ -1,0 +1,407 @@
+[
+  {
+    "id": "ReadCompanyContext",
+    "axis": "node",
+    "refines": "Capability",
+    "domain": "app",
+    "authoritative": false,
+    "path": "node/capability/readcompanycontext",
+    "groups": [
+      "commercial"
+    ],
+    "description": "Derives an interpretation request from the HG type of an existing Company instance.",
+    "guarantees": [
+      "Reads only the Company bound to its subject reference and proposes interpretation context without mutation."
+    ],
+    "input_ports": [
+      {
+        "name": "subject",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/party/company"
+          }
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "request",
+        "role": "requirement",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "structured",
+          "members": [
+            {
+              "name": "material",
+              "role": "source",
+              "cardinality": {
+                "min": 1,
+                "max": 1
+              },
+              "value": {
+                "kind": "variant",
+                "members": [
+                  {
+                    "name": "lexical",
+                    "role": "source",
+                    "cardinality": {
+                      "min": 1,
+                      "max": 1
+                    },
+                    "value": {
+                      "kind": "structured",
+                      "members": [
+                        {
+                          "name": "text",
+                          "role": "source",
+                          "cardinality": {
+                            "min": 1,
+                            "max": 1
+                          },
+                          "constraints": {
+                            "min_length": 1
+                          },
+                          "value": {
+                            "kind": "text",
+                            "semantic_type": "property/descriptive"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "semantic_subject",
+                    "role": "source",
+                    "cardinality": {
+                      "min": 1,
+                      "max": 1
+                    },
+                    "value": {
+                      "kind": "structured",
+                      "members": [
+                        {
+                          "name": "subject",
+                          "role": "source",
+                          "cardinality": {
+                            "min": 1,
+                            "max": null
+                          },
+                          "collection_semantics": "sequence",
+                          "value": {
+                            "kind": "reference",
+                            "target": {
+                              "kind": "instance",
+                              "axes": [
+                                "node"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "context",
+              "role": "required",
+              "cardinality": {
+                "min": 1,
+                "max": 1
+              },
+              "value": {
+                "kind": "structured",
+                "members": [
+                  {
+                    "name": "declaration",
+                    "role": "context",
+                    "cardinality": {
+                      "min": 0,
+                      "max": null
+                    },
+                    "collection_semantics": "set",
+                    "value": {
+                      "kind": "reference",
+                      "target": {
+                        "kind": "declaration",
+                        "axes": [
+                          "node",
+                          "edge",
+                          "property"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "modifier",
+                    "role": "context",
+                    "cardinality": {
+                      "min": 0,
+                      "max": null
+                    },
+                    "collection_semantics": "set",
+                    "value": {
+                      "kind": "reference",
+                      "target": {
+                        "kind": "instance",
+                        "type": "node/resource/semanticmodifier"
+                      }
+                    }
+                  },
+                  {
+                    "name": "guarantee",
+                    "role": "context",
+                    "cardinality": {
+                      "min": 0,
+                      "max": null
+                    },
+                    "collection_semantics": "set",
+                    "value": {
+                      "kind": "reference",
+                      "target": {
+                        "kind": "guarantee"
+                      }
+                    }
+                  },
+                  {
+                    "name": "classification",
+                    "role": "context",
+                    "cardinality": {
+                      "min": 0,
+                      "max": null
+                    },
+                    "collection_semantics": "set",
+                    "value": {
+                      "kind": "reference",
+                      "target": {
+                        "kind": "classification_group"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "effects": {
+      "ports": [],
+      "external_io": false
+    },
+    "policies": [],
+    "failures": []
+  },
+  {
+    "id": "InspectCompanyMeaning",
+    "axis": "node",
+    "refines": "Process",
+    "domain": "app",
+    "authoritative": false,
+    "path": "node/process/inspectcompanymeaning",
+    "groups": [
+      "commercial"
+    ],
+    "description": "Reusable application Strategy deriving proposal-only meaning from an existing Company instance.",
+    "guarantees": [
+      "Preserves the World subject provenance and does not materialise interpretation results."
+    ],
+    "process": {
+      "input_ports": [
+        {
+          "name": "subject",
+          "role": "source",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          },
+          "value": {
+            "kind": "reference",
+            "target": {
+              "kind": "instance",
+              "type": "node/party/company"
+            }
+          }
+        }
+      ],
+      "output_ports": [
+        {
+          "name": "interpretation",
+          "role": "result",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          },
+          "value": {
+            "kind": "variant",
+            "members": [
+              {
+                "name": "hypotheses",
+                "role": "result",
+                "cardinality": {
+                  "min": 1,
+                  "max": 1
+                },
+                "value": {
+                  "kind": "structured",
+                  "members": [
+                    {
+                      "name": "hypothesis",
+                      "role": "proposed",
+                      "cardinality": {
+                        "min": 1,
+                        "max": null
+                      },
+                      "collection_semantics": "sequence",
+                      "value": {
+                        "kind": "structured",
+                        "members": [
+                          {
+                            "name": "candidate",
+                            "role": "proposed",
+                            "cardinality": {
+                              "min": 1,
+                              "max": 1
+                            },
+                            "value": {
+                              "kind": "reference",
+                              "target": {
+                                "kind": "declaration",
+                                "axes": [
+                                  "node",
+                                  "edge",
+                                  "property"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "name": "confidence",
+                            "role": "evidence",
+                            "cardinality": {
+                              "min": 1,
+                              "max": 1
+                            },
+                            "constraints": {
+                              "minimum": "0",
+                              "maximum": "1"
+                            },
+                            "value": {
+                              "kind": "number",
+                              "semantic_type": "property/ratio"
+                            }
+                          },
+                          {
+                            "name": "evidence",
+                            "role": "evidence",
+                            "cardinality": {
+                              "min": 1,
+                              "max": null
+                            },
+                            "collection_semantics": "sequence",
+                            "constraints": {
+                              "min_length": 1
+                            },
+                            "value": {
+                              "kind": "text",
+                              "semantic_type": "property/descriptive"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "unresolved",
+                "role": "result",
+                "cardinality": {
+                  "min": 1,
+                  "max": 1
+                },
+                "value": {
+                  "kind": "structured",
+                  "members": [
+                    {
+                      "name": "reason",
+                      "role": "reason",
+                      "cardinality": {
+                        "min": 1,
+                        "max": null
+                      },
+                      "collection_semantics": "sequence",
+                      "constraints": {
+                        "min_length": 1
+                      },
+                      "value": {
+                        "kind": "text",
+                        "semantic_type": "property/descriptive"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "effects": {
+        "ports": [],
+        "external_io": false
+      },
+      "steps": [
+        {
+          "name": "read_context",
+          "capability": "node/capability/readcompanycontext",
+          "interface_digest": "6d221c9c95e73185fc3e4f7c271ab2dbe3e0ec9acfb3b81d35b7f727a113e6e3",
+          "input_bindings": [
+            {
+              "port": "subject",
+              "source": {
+                "kind": "process_input",
+                "port": "subject"
+              }
+            }
+          ]
+        },
+        {
+          "name": "interpret",
+          "capability": "node/capability/interpretsemanticcontext",
+          "interface_digest": "88282011d7b0728bdd0c66af29ec8155e23d5f0510eb96a64d64e947fa71ec30",
+          "input_bindings": [
+            {
+              "port": "request",
+              "source": {
+                "kind": "step_output",
+                "step": "read_context",
+                "port": "request"
+              }
+            }
+          ]
+        }
+      ],
+      "output_bindings": [
+        {
+          "port": "interpretation",
+          "source": {
+            "kind": "step_output",
+            "step": "interpret",
+            "port": "interpretation"
+          }
+        }
+      ]
+    }
+  }
+]

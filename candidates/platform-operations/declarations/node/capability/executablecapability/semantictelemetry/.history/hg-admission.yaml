@@ -1,7 +1,0 @@
-declaration_path: "node/capability/executablecapability/semantictelemetry"
-disposition: "admitted"
-distinction: "SemanticTelemetry denotes an executable capability for external observability after semantic materialisation. It is distinct from ApplySemanticEffect, which validates and materialises HG changes, and from a proposing capability, which may only accumulate proposed changes."
-generic_warrant: "External observations such as audit records, metrics, traces, logs, and delivery notifications recur wherever successful semantic changes must be observed without granting the observer semantic mutation authority."
-supports:
-  - "guarantee:Performs no semantic materialisation or mutation of HG instances."
-  - "guarantee:Emits observations only for a successfully materialised semantic change."

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "CollectForward",
+    "axis": "node",
+    "path": "node/capability/collectforward",
+    "refines": "Capability",
+    "domain": "app",
+    "authoritative": false,
+    "description": "Collect eligible one-step forward relations and contextually applicable Capabilities from a Projection, retaining origins, provenance and explicit incomplete coverage without invoking returned choices or committing changes.",
+    "groups": ["kernel"],
+    "inputs": [{"type": "node/projection", "cardinality": {"min": 1, "max": 1}}],
+    "outputs": [{"type": "node/projection", "cardinality": {"min": 1, "max": 1}}]
+  }
+]

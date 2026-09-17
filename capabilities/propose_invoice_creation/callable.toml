@@ -1,0 +1,7 @@
+hg_path = "node/capability/proposeinvoicecreation"
+entry_file = "implementation.py"
+module = "invoice_creation_candidate"
+function = "propose_invoice_creation"
+tests = ["test_integration.py"]
+context_parameters = ["read", "demand"]
+rationale = "Explicit local candidate producing an inert Invoice creation request under HG; generated numbering and constrained commit remain protected host responsibilities."

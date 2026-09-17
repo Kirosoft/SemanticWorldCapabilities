@@ -1,0 +1,95 @@
+[
+  {
+    "id": "ProposeOdooOrderObservation",
+    "path": "node/capability/proposeodooorderobservation",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Proposes a previously absent Odoo order and two evidenced State subjects, with the current State association. Source observation evidence must be supplied by the selected integration implementation. The proposed identities are not existing instance references and confer no authority. HG validates the complete proposed graph; protected application must preserve source evidence and exact admitted execution provenance.",
+    "guarantees": [
+      "Cannot overwrite an existing subject or state identity.",
+      "Creates only the current State association; the next State is an evidenced available value, not an asserted transition.",
+      "Cannot authorise or commit its proposed World."
+    ],
+    "input_ports": [
+      {
+        "name": "order",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/document/transactionaldocument/odoov2order"
+        }
+      },
+      {
+        "name": "current_state",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/state"
+        }
+      },
+      {
+        "name": "next_state",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/state"
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "order",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/document/transactionaldocument/odoov2order"
+        }
+      },
+      {
+        "name": "current_state",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/state"
+        }
+      },
+      {
+        "name": "next_state",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/state"
+        }
+      }
+    ],
+    "policies": [],
+    "failures": [],
+    "external_io": false
+  }
+]

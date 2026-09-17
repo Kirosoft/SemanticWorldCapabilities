@@ -1,0 +1,881 @@
+{
+  "proposal_id": "60807b5acd9e13df3f1bd77847632d8b966749aea35ef7cdec725c528297b8f2",
+  "disposition": "unresolved",
+  "declaration": {
+    "authoritative": false,
+    "axis": "node",
+    "constraints": {},
+    "description": "Executable capability that recruits candidate HG instances, types, capabilities, or processes from the semantically reachable graph under applicable scope, policy, capability, and demand constraints.",
+    "domain": "platform",
+    "groups": [
+      "kernel"
+    ],
+    "guarantees": [
+      "Applies applicable scope, policy, capability, and demand constraints before returning candidates.",
+      "Begins recruitment from the semantically reachable HG graph.",
+      "Does not admit, materialise, or mutate HG instances merely by recruiting.",
+      "Returns exactly one Projection as the recruited result."
+    ],
+    "id": "Recruit",
+    "normalisation": {},
+    "reifies_relationship": false,
+    "path": "node/capability/executablecapability/recruit",
+    "properties": [],
+    "property_bindings": [],
+    "relationship_bindings": [],
+    "refines": "ExecutableCapability",
+    "source_types": [],
+    "target_types": [],
+    "cardinality": null,
+    "scope_dependency": {
+      "target_scoped_by_source": false
+    },
+    "endpoint_roles": {
+      "source": null,
+      "target": null
+    },
+    "value_domain": {
+      "configuration": {},
+      "kind": null,
+      "primitive": null,
+      "qualifiers": {},
+      "schema": null,
+      "target": null
+    },
+    "external_io": false,
+    "failures": [],
+    "input_ports": [
+      {
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "collection_semantics": null,
+        "constraints": {},
+        "name": "demand",
+        "role": "requirement",
+        "required_guarantees": [],
+        "value": {
+          "digest_selector": null,
+          "facet": null,
+          "invariants": [],
+          "input_selector": null,
+          "kind": "structured",
+          "members": [
+            {
+              "cardinality": {
+                "min": 0,
+                "max": 1
+              },
+              "collection_semantics": null,
+              "constraints": {},
+              "name": "query",
+              "role": "requirement",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "structured",
+                "members": [
+                  {
+                    "cardinality": {
+                      "min": 1,
+                      "max": null
+                    },
+                    "collection_semantics": "sequence",
+                    "constraints": {},
+                    "name": "variables",
+                    "role": "required",
+                    "value": {
+                      "digest_selector": null,
+                      "facet": null,
+                      "invariants": [],
+                      "input_selector": null,
+                      "kind": "structured",
+                      "members": [
+                        {
+                          "cardinality": {
+                            "min": 1,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "name",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "text",
+                            "members": [],
+                            "semantic_type": "property/identifier",
+                            "selector": null
+                          }
+                        },
+                        {
+                          "cardinality": {
+                            "min": 1,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "type",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "reference",
+                            "members": [],
+                            "semantic_type": null,
+                            "selector": null,
+                            "target": {
+                              "axes": [
+                                "node"
+                              ],
+                              "kind": "declaration",
+                              "type": null
+                            }
+                          }
+                        },
+                        {
+                          "cardinality": {
+                            "min": 0,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "instance",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "reference",
+                            "members": [],
+                            "semantic_type": null,
+                            "selector": null,
+                            "target": {
+                              "axes": [
+                                "node"
+                              ],
+                              "kind": "instance",
+                              "type": null
+                            }
+                          }
+                        },
+                        {
+                          "cardinality": {
+                            "min": 0,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "property_type",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "reference",
+                            "members": [],
+                            "semantic_type": null,
+                            "selector": null,
+                            "target": {
+                              "axes": [
+                                "property"
+                              ],
+                              "kind": "declaration",
+                              "type": null
+                            }
+                          }
+                        }
+                      ],
+                      "semantic_type": null,
+                      "selector": null
+                    }
+                  },
+                  {
+                    "cardinality": {
+                      "min": 0,
+                      "max": null
+                    },
+                    "collection_semantics": "sequence",
+                    "constraints": {},
+                    "name": "relationships",
+                    "role": "required",
+                    "value": {
+                      "digest_selector": null,
+                      "facet": null,
+                      "invariants": [],
+                      "input_selector": null,
+                      "kind": "structured",
+                      "members": [
+                        {
+                          "cardinality": {
+                            "min": 1,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "source",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "text",
+                            "members": [],
+                            "semantic_type": "property/identifier",
+                            "selector": null
+                          }
+                        },
+                        {
+                          "cardinality": {
+                            "min": 1,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "relationship",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "reference",
+                            "members": [],
+                            "semantic_type": null,
+                            "selector": null,
+                            "target": {
+                              "axes": [
+                                "edge"
+                              ],
+                              "kind": "declaration",
+                              "type": null
+                            }
+                          }
+                        },
+                        {
+                          "cardinality": {
+                            "min": 1,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "target",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "text",
+                            "members": [],
+                            "semantic_type": "property/identifier",
+                            "selector": null
+                          }
+                        },
+                        {
+                          "cardinality": {
+                            "min": 0,
+                            "max": 1
+                          },
+                          "collection_semantics": null,
+                          "constraints": {},
+                          "name": "binding",
+                          "role": "required",
+                          "value": {
+                            "digest_selector": null,
+                            "facet": null,
+                            "invariants": [],
+                            "input_selector": null,
+                            "kind": "reference",
+                            "members": [],
+                            "semantic_type": null,
+                            "selector": null,
+                            "target": {
+                              "axes": [],
+                              "kind": "property_binding",
+                              "type": null
+                            }
+                          }
+                        }
+                      ],
+                      "semantic_type": null,
+                      "selector": null
+                    }
+                  },
+                  {
+                    "cardinality": {
+                      "min": 1,
+                      "max": null
+                    },
+                    "collection_semantics": "sequence",
+                    "constraints": {},
+                    "name": "project",
+                    "role": "required",
+                    "value": {
+                      "digest_selector": null,
+                      "facet": null,
+                      "invariants": [],
+                      "input_selector": null,
+                      "kind": "text",
+                      "members": [],
+                      "semantic_type": "property/identifier",
+                      "selector": null
+                    }
+                  }
+                ],
+                "semantic_type": null,
+                "selector": null
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "classification_group",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "classification_group",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "authority_domain",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "authority_domain",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "definition",
+              "role": "exact",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [
+                    "edge",
+                    "node",
+                    "property"
+                  ],
+                  "kind": "declaration",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "genus",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [
+                    "edge",
+                    "node",
+                    "property"
+                  ],
+                  "kind": "declaration",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "guarantee",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "guarantee",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "relationship_binding",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "relationship_binding",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "value",
+              "role": "exact",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [
+                    "node"
+                  ],
+                  "kind": "instance",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "value_type",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [
+                    "property"
+                  ],
+                  "kind": "declaration",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "occurrence",
+              "role": "exact",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "instance",
+                  "type": "node/component/propertyoccurrence"
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "occurrence_type",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "declaration",
+                  "type": "node/component/propertyoccurrence"
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "occurrence_subject",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [
+                    "node"
+                  ],
+                  "kind": "instance",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "relationship_traversal",
+              "role": "required",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "structured",
+                "members": [
+                  {
+                    "cardinality": {
+                      "min": 1,
+                      "max": 1
+                    },
+                    "collection_semantics": null,
+                    "constraints": {},
+                    "name": "endpoint",
+                    "role": "source",
+                    "value": {
+                      "digest_selector": null,
+                      "facet": null,
+                      "invariants": [],
+                      "input_selector": null,
+                      "kind": "reference",
+                      "members": [],
+                      "semantic_type": null,
+                      "selector": null,
+                      "target": {
+                        "axes": [
+                          "node"
+                        ],
+                        "kind": "instance",
+                        "type": null
+                      }
+                    }
+                  },
+                  {
+                    "cardinality": {
+                      "min": 1,
+                      "max": 1
+                    },
+                    "collection_semantics": null,
+                    "constraints": {},
+                    "name": "relationship_binding",
+                    "role": "selected",
+                    "value": {
+                      "digest_selector": null,
+                      "facet": null,
+                      "invariants": [],
+                      "input_selector": null,
+                      "kind": "reference",
+                      "members": [],
+                      "semantic_type": null,
+                      "selector": null,
+                      "target": {
+                        "axes": [],
+                        "kind": "relationship_binding",
+                        "type": null
+                      }
+                    }
+                  },
+                  {
+                    "cardinality": {
+                      "min": 1,
+                      "max": 1
+                    },
+                    "collection_semantics": null,
+                    "constraints": {
+                      "allowed_values": [
+                        "source_to_target",
+                        "target_to_source"
+                      ]
+                    },
+                    "name": "traversal",
+                    "role": "direction",
+                    "value": {
+                      "digest_selector": null,
+                      "facet": null,
+                      "invariants": [],
+                      "input_selector": null,
+                      "kind": "text",
+                      "members": [],
+                      "semantic_type": "property/classifier",
+                      "selector": null
+                    }
+                  }
+                ],
+                "semantic_type": null,
+                "selector": null
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "scope_subject",
+              "role": "visible",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [
+                    "node"
+                  ],
+                  "kind": "instance",
+                  "type": null
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "permitted_policy",
+              "role": "permitted",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "declaration",
+                  "type": "node/policy"
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "denied_policy",
+              "role": "denied",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "reference",
+                "members": [],
+                "semantic_type": null,
+                "selector": null,
+                "target": {
+                  "axes": [],
+                  "kind": "declaration",
+                  "type": "node/policy"
+                }
+              }
+            },
+            {
+              "cardinality": {
+                "min": 0,
+                "max": null
+              },
+              "collection_semantics": "set",
+              "constraints": {},
+              "name": "instant",
+              "role": "eligibility",
+              "value": {
+                "digest_selector": null,
+                "facet": null,
+                "invariants": [],
+                "input_selector": null,
+                "kind": "temporal",
+                "members": [],
+                "semantic_type": "property/temporal",
+                "selector": null
+              }
+            }
+          ],
+          "semantic_type": null,
+          "selector": null
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "collection_semantics": null,
+        "constraints": {},
+        "name": "result",
+        "role": "result",
+        "required_guarantees": [],
+        "value": {
+          "digest_selector": null,
+          "facet": null,
+          "invariants": [],
+          "input_selector": null,
+          "kind": "subject",
+          "members": [],
+          "semantic_type": "node/projection",
+          "selector": null
+        }
+      }
+    ],
+    "policies": [],
+    "implementation_ref": null,
+    "interface_sha256": "8963eaf67d1bae95c68be441064c7cca35277488c421e9cd89ee2d67a8065099"
+  },
+  "failure": {
+    "example": "Configured HG-described capability cannot be recruited on the selected HG basis.",
+    "constraint": "The selected authority does not contain the Recruitment operation",
+    "evidence_refs": [
+      "59a3eb8f7f8ca41afbcf1e3d045154c4db6febfe936c53a0106d6d4142835e7d"
+    ],
+    "groups": [
+      "kernel"
+    ],
+    "source_digest": "3eabdf696bd1fab5432a9a1226e6781f3de7f38f06745c535d6ddc09bbbb52ca",
+    "base_revision": "45010b125d6a25de3353438b775e492e0941baecb826c0301b1a4f5cc04a8cd8"
+  },
+  "warrant": "Recruit describes a typed executable search interface over existing HG meaning and instances, producing an existing HG Projection without committing truth or choosing an implementation.",
+  "genericity": "The interface applies across HG-described application domains and keeps semantic query meaning independent of physical providers, runtime scheduling and client result-selection policy.",
+  "groups": [
+    "kernel"
+  ],
+  "supersedes": null,
+  "source_file": "candidates/platform-operations/declarations/node/capability/executablecapability/recruit/Recruit.yaml",
+  "source_sha256": "3eabdf696bd1fab5432a9a1226e6781f3de7f38f06745c535d6ddc09bbbb52ca",
+  "structural_validation": "HG validate_authority without admission evidence; not admission",
+  "review_reports": [],
+  "admission_record": null
+}

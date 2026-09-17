@@ -1,0 +1,5 @@
+{
+  "format": "swos-local-bootstrap/1",
+  "applications": ["applications/company_tax_number_update.json"],
+  "packages": ["capabilities/propose_company_tax_number_update"]
+}

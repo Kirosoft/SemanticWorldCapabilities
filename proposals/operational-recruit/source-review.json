@@ -1,0 +1,32 @@
+{
+  "proposal_id": "60807b5acd9e13df3f1bd77847632d8b966749aea35ef7cdec725c528297b8f2",
+  "state": "held",
+  "review_digest": "a02f8ab16bbf5b58c00b1c729e123444116940fd297c88ec2f19756a3ac2aded",
+  "report": {
+    "action": "hold",
+    "rationale": "HOLD: the retained actual-basis failure establishes missing Recruitment admission, not implementation conformance. The candidate declares a general query member, while semanticworld.read.recruit dispatches genus, multiple definitions, relationship traversal and occurrence-subject forms and otherwise requires one exact definition. Standalone query interpretation does not establish public integration for that declared input. Complete conformance for the declared query surface and exact SWOS selection of an external HG-admitted catalogue are still required. Do not narrow the intended semantics to the passing subset or use synthetic test evidence as production approval.",
+    "evidence_refs": [
+      "59a3eb8f7f8ca41afbcf1e3d045154c4db6febfe936c53a0106d6d4142835e7d"
+    ],
+    "reviewer": "codex-source-review",
+    "reviewer_model": "",
+    "digest": "84ddf353827ee9871a0144ef55bac6fd227661c4bf6f9dfbe2707e945a909882"
+  },
+  "inspected_sources": [
+    {
+      "path": "semanticworld/read.py",
+      "sha256": "a97faa34705bc6c46c6bf5080f92f23fa5a0e2bbb9e650eb81bac2fd0599aee4"
+    },
+    {
+      "path": "semanticworld/interpretation/query.py",
+      "sha256": "f4d66249f3ae6ab32685e54c81bfa33a9aec8f0a2fb499742a570973decc61ba"
+    },
+    {
+      "path": "SemanticWorldOS/swos/authority/application.py",
+      "sha256": "66ae035153446563e88b804d86903c8363acf45573b4f5a01f47e33b78f1ff7d"
+    }
+  ],
+  "limits": "Source review by the coding agent; no human approval, production conformance claim, authenticated admission record, or SWOS authority selection.",
+  "admission_record": null,
+  "prospective_delta": null
+}

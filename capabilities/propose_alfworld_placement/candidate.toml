@@ -1,0 +1,6 @@
+hg_path = "node/capability/proposealfworldplacement"
+entry_file = "implementation.py"
+function = "propose"
+files = ["implementation.py"]
+tests = ["test_implementation.py"]
+rationale = "Construct an inert placement Effect preserving the explicit HG instance and binding references."

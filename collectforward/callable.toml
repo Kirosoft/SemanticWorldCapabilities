@@ -1,0 +1,7 @@
+hg_path = "node/capability/collectforward"
+entry_file = "candidate.py"
+module = "collectforward_candidate"
+function = "collect_forward"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Explicit SWOS local-bootstrap admission over existing HG types; one-step collection without invocation of returned Capabilities or mutation."

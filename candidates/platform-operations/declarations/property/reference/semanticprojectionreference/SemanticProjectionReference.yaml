@@ -1,7 +1,0 @@
-description: "Reference to a SemanticProjection returned as the result of a semantic operation."
-value_domain:
-  kind: "reference"
-  target: "node/projection/semanticprojection"
-guarantees:
-  - "Identifies one SemanticProjection without embedding or duplicating its semantic context."
-domain: "platform"

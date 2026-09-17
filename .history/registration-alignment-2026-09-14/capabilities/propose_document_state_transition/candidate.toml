@@ -1,0 +1,6 @@
+hg_path = "node/capability/executablecapability/proposedocumentstatetransition"
+entry_file = "implementation.py"
+function = "propose"
+files = ["implementation.py"]
+tests = ["test_implementation.py"]
+rationale = "Return the explicitly bound replacement as an HG State reference. SemanticWorld retains the ingress binding and validates the proposed transition. No provider invocation or materialisation."

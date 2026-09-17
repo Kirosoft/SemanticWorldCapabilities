@@ -1,8 +1,0 @@
-declaration_path: "property/reference/semanticprojectionreference"
-disposition: "admitted"
-distinction: "SemanticProjectionReference denotes a typed reference to a SemanticProjection result. It is distinct from the projection itself and preserves the identity and context of that projection without embedding or duplicating it."
-generic_warrant: "Typed references to semantic projections recur wherever an HG capability returns a navigable projection as its result while preserving the projection's identity, context, and authority independently of runtime representation."
-supports:
-  - "value.kind:reference"
-  - "value.target:node/projection/semanticprojection"
-  - "guarantee:Identifies one SemanticProjection without embedding or duplicating its semantic context."

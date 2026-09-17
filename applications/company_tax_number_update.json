@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ProposeCompanyTaxNumberUpdate",
+    "axis": "node",
+    "refines": "Capability",
+    "domain": "app",
+    "authoritative": false,
+    "path": "node/capability/proposecompanytaxnumberupdate",
+    "description": "Validates an existing PropertyOccurrence and replacement TaxNumber, returning only the canonical typed TaxNumber; protected interpretation applies the binding-preserving replacement.",
+    "inputs": [
+      {
+        "type": "node/component/propertyoccurrence",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "type": "property/identifier/taxnumber",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "type": "property/identifier/taxnumber",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "policies": []
+  }
+]

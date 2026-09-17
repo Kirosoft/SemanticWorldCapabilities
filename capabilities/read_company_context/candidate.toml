@@ -1,0 +1,6 @@
+hg_path = "node/capability/readcompanycontext"
+entry_file = "implementation.py"
+function = "read_company_context"
+files = ["implementation.py"]
+tests = ["test_implementation.py"]
+rationale = "Reads the HG type of the Company node resolved from World INEP for the declared subject reference. Physical lowering supplies only that node's HG ref and node_type. Produces the existing InterpretSemanticContext request structure without mutation or new meaning."

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "OdooQuantityEquivalent",
+    "path": "node/state/odooquantityequivalent",
+    "axis": "node",
+    "refines": "State",
+    "domain": "app",
+    "authoritative": false,
+    "description": "Exact equality of source invoiced quantity and the admitted invoice-minus-refund calculation in one evidenced source unit; no tolerance or unit conversion is claimed.",
+    "guarantees": [
+      "The associated exact source-minus-computed quantity difference is zero in the same evidenced source unit."
+    ]
+  },
+  {
+    "id": "OdooQuantityDiscrepant",
+    "path": "node/state/odooquantitydiscrepant",
+    "axis": "node",
+    "refines": "State",
+    "domain": "app",
+    "authoritative": false,
+    "description": "A nonzero exact difference between source invoiced quantity and the admitted invoice-minus-refund calculation in one evidenced source unit.",
+    "guarantees": [
+      "The associated exact source-minus-computed quantity difference is nonzero in the same evidenced source unit."
+    ]
+  },
+  {
+    "id": "ReconcileOdooQuantities",
+    "path": "node/capability/reconcileodooquantities",
+    "axis": "node",
+    "refines": "Capability",
+    "domain": "app",
+    "authoritative": false,
+    "description": "Compute exact decimal sum(invoices) minus sum(refunds) and source minus computed in a single evidenced source unit. The caller must supply only non-cancelled eligible lines with identical units; this capability does not infer invoice eligibility or unit conversion. Return OdooQuantityEquivalent for zero difference, otherwise OdooQuantityDiscrepant, as a proposed State-valued result anchored by comparison_id. No observation, World fact or Effect is materialised.",
+    "input_ports": [
+      {
+        "name": "invoices",
+        "role": "source",
+        "cardinality": {
+          "min": 0,
+          "max": null
+        },
+        "value": {
+          "kind": "number",
+          "semantic_type": "property/quantity"
+        },
+        "collection_semantics": "multiset"
+      },
+      {
+        "name": "refunds",
+        "role": "source",
+        "cardinality": {
+          "min": 0,
+          "max": null
+        },
+        "value": {
+          "kind": "number",
+          "semantic_type": "property/quantity"
+        },
+        "collection_semantics": "multiset"
+      },
+      {
+        "name": "source",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "number",
+          "semantic_type": "property/quantity"
+        }
+      },
+      {
+        "name": "unit",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "text",
+          "semantic_type": "property/identifier"
+        }
+      },
+      {
+        "name": "comparison_id",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "text",
+          "semantic_type": "property/identifier"
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "computed",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "number",
+          "semantic_type": "property/quantity"
+        }
+      },
+      {
+        "name": "difference",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "number",
+          "semantic_type": "property/quantity"
+        }
+      },
+      {
+        "name": "unit",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "text",
+          "semantic_type": "property/identifier"
+        }
+      },
+      {
+        "name": "outcome",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/state"
+        }
+      }
+    ],
+    "policies": [],
+    "failures": [],
+    "external_io": false
+  }
+]

@@ -1,8 +1,0 @@
-declaration_path: "node/capability/executablecapability/applysemanticeffect"
-disposition: "admitted"
-distinction: "ApplySemanticEffect denotes the executable capability that materialises proposed changes under the authority of the affected HG types, bindings, and policies. It is distinct from a proposing capability, which may accumulate changes but cannot authorise them."
-generic_warrant: "Atomic validation and materialisation of proposed semantic changes recurs across every conforming HG storage implementation and must remain distinct from the executable transformations that propose those changes."
-supports:
-  - "relationship_binding:semantic_telemetry"
-  - "guarantee:Cannot grant mutation authority to the capability that proposed a change."
-  - "guarantee:Applies a composed change set atomically or leaves HG instances unchanged."

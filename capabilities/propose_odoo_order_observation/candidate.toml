@@ -1,0 +1,6 @@
+hg_path = "node/capability/proposeodooorderobservation"
+entry_file = "implementation.py"
+function = "propose"
+files = ["implementation.py"]
+tests = ["test_implementation.py"]
+rationale = "Construct the explicit HG-typed Odoo observation proposal without persistence or external access."

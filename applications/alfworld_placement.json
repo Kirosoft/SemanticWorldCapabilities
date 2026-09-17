@@ -1,0 +1,340 @@
+[
+  {
+    "id": "ProposeAlfworldPlacement",
+    "path": "node/capability/proposealfworldplacement",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Proposes movement of one ALFWorld object between receptacle contents and actor inventory through the explicitly supplied HG bindings. Both holders must have one shared admitted room context. The object has one current placement, which is replaced without changing its identity.",
+    "guarantees": [
+      "Previous and next holders must be distinct, with exactly one actor and one receptacle.",
+      "The object must have exactly one current HAS_PART placement from the previous holder under the supplied binding.",
+      "Both holders must have one evidenced location referring to the same AlfworldRoom.",
+      "Preserves every subject and all relationships except the exact placement being replaced.",
+      "The typed result preserves the original ingress and cannot authorise its own materialisation."
+    ],
+    "input_ports": [
+      {
+        "name": "object",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldobject"
+          }
+        }
+      },
+      {
+        "name": "previous",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/party/alfworldactor"
+          }
+        }
+      },
+      {
+        "name": "next_holder",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldreceptacle"
+          }
+        }
+      },
+      {
+        "name": "previous_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      },
+      {
+        "name": "next_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "object",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldobject"
+          }
+        }
+      },
+      {
+        "name": "previous",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/party/alfworldactor"
+          }
+        }
+      },
+      {
+        "name": "next_holder",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldreceptacle"
+          }
+        }
+      },
+      {
+        "name": "previous_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      },
+      {
+        "name": "next_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      }
+    ],
+    "policies": [],
+    "failures": [],
+    "external_io": false
+  },
+  {
+    "id": "ProposeAlfworldPickup",
+    "path": "node/capability/proposealfworldpickup",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Proposes movement of one ALFWorld object between receptacle contents and actor inventory through the explicitly supplied HG bindings. Both holders must have one shared admitted room context. The object has one current placement, which is replaced without changing its identity.",
+    "guarantees": [
+      "Previous and next holders must be distinct, with exactly one actor and one receptacle.",
+      "The object must have exactly one current HAS_PART placement from the previous holder under the supplied binding.",
+      "Both holders must have one evidenced location referring to the same AlfworldRoom.",
+      "Preserves every subject and all relationships except the exact placement being replaced.",
+      "The typed result preserves the original ingress and cannot authorise its own materialisation."
+    ],
+    "input_ports": [
+      {
+        "name": "object",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldobject"
+          }
+        }
+      },
+      {
+        "name": "previous",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldreceptacle"
+          }
+        }
+      },
+      {
+        "name": "next_holder",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/party/alfworldactor"
+          }
+        }
+      },
+      {
+        "name": "previous_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      },
+      {
+        "name": "next_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "object",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldobject"
+          }
+        }
+      },
+      {
+        "name": "previous",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/resource/alfworldreceptacle"
+          }
+        }
+      },
+      {
+        "name": "next_holder",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/party/alfworldactor"
+          }
+        }
+      },
+      {
+        "name": "previous_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      },
+      {
+        "name": "next_binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      }
+    ],
+    "policies": [],
+    "failures": [],
+    "external_io": false
+  }
+]

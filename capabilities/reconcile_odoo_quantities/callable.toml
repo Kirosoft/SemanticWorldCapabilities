@@ -1,0 +1,7 @@
+hg_path = "node/capability/reconcileodooquantities"
+entry_file = "implementation.py"
+module = "odoo_quantity_reconciliation_candidate"
+function = "reconcile"
+tests = ["test_implementation.py", "test_integration.py"]
+context_parameters = ["read", "demand"]
+rationale = "Exact decimal calculation under admitted Odoo application meaning. Classification is a proposed State result; source eligibility, unit evidence, admission and materialisation remain outside this pure calculation."

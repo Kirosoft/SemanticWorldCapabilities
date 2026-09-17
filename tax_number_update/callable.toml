@@ -1,0 +1,7 @@
+hg_path = "node/capability/proposecompanytaxnumberupdate"
+entry_file = "candidate.py"
+module = "tax_number_candidate"
+function = "propose"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Explicit type-annotated physical lowering. HG validates canonical TaxNumber ingress and egress; SemanticWorld validates the recruited occurrence and proposed replacement. No candidate write authority."

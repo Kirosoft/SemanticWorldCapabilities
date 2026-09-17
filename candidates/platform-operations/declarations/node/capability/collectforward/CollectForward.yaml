@@ -1,0 +1,34 @@
+# Unadmitted candidate. The retained port codec below is legacy, not the target HG
+# interface. Preserve its multiplicity until that interface can express it; see
+# ../../../../../COLLECT_FORWARD_MIGRATION.md for the remaining registration gap.
+description: "Capability taking exactly one Projection as graph context and returning exactly one Projection through standard Recruitment of eligible one-step forward relations and Capabilities whose HG input requirements match that context."
+input_ports:
+  - name: "projection"
+    role: "source"
+    cardinality: {"min": 1, "max": 1}
+    value:
+      kind: "reference"
+      target: {"kind": "instance", "type": "node/projection"}
+output_ports:
+  - name: "result"
+    role: "result"
+    cardinality: {"min": 1, "max": 1}
+    value: {"kind": "subject", "semantic_type": "node/projection"}
+failures: []
+external_io: false
+policies: []
+guarantees:
+  - "Accepts exactly one Projection containing one or more recruited entry points, which may identify admitted definitions, instances or both."
+  - "Uses standard Recruitment and returns exactly one Projection whose HG types, instances, relationships and matching eligible Capabilities retain their existing semantic meaning; no separate choice schema is required."
+  - "Interprets any relation restriction through HG edge genus meaning and the current context, not a particular binding identity or host selector name; without a restriction, considers all eligible outgoing one-step relations."
+  - "Preserves applicable HG endpoint and cardinality constraints for actual relationships, together with source and authority provenance."
+  - "Includes Capabilities whose HG input requirements match the entry points and context under the applicable protected selection, without requiring or fabricating a stored outgoing edge to those Capabilities."
+  - "Preserves originating entry points and applicable scope and completeness information, including when there is nothing eligible to follow; scoped or partial emptiness does not establish exhaustive absence."
+  - "Retains semantic input matches and supporting context without permanently binding a physical implementation or granting execution authority merely through discovery."
+  - "Does not recursively collect all reachable destinations or automatically follow the returned relations or invoke the returned Capabilities."
+  - "Fetching needed for Recruitment is not admission or mutation; collection does not commit semantic changes."
+  - "Following selected results uses existing traversal and SWC binding and invocation mechanics, including applicable authority and input revalidation."
+  - "CollectForward is an ordinary recruitable Capability; its name and repository presence establish neither intrinsic runtime status nor admission authority."
+groups:
+  - "kernel"
+domain: "platform"

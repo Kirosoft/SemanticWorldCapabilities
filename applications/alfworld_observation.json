@@ -1,0 +1,174 @@
+[
+  {
+    "id": "ProposeAlfworldObservation",
+    "path": "node/capability/proposealfworldobservation",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Proposes five distinct, previously absent ALFWorld subjects from one observed pickup/place scene. Object starts in source contents; source, destination and actor share the evidenced room. Subject identities and source evidence are proposals, not execution or commit authority.",
+    "guarantees": [
+      "All five identities are distinct and previously absent.",
+      "Creates only the initial source placement and three holder-to-room associations.",
+      "Cannot overwrite existing instances or authorise materialisation.",
+      "Retains the supplied source evidence description unchanged with the proposed scene; evidence text does not grant authority."
+    ],
+    "input_ports": [
+      {
+        "name": "object",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/resource/alfworldobject"
+        }
+      },
+      {
+        "name": "source",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/resource/alfworldreceptacle"
+        }
+      },
+      {
+        "name": "destination",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/resource/alfworldreceptacle"
+        }
+      },
+      {
+        "name": "actor",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/party/alfworldactor"
+        }
+      },
+      {
+        "name": "room",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/location/alfworldroom"
+        }
+      },
+      {
+        "name": "source_evidence",
+        "role": "evidence",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "constraints": {
+          "min_length": 1
+        },
+        "value": {
+          "kind": "text",
+          "semantic_type": "property/descriptive"
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "object",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/resource/alfworldobject"
+        }
+      },
+      {
+        "name": "source",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/resource/alfworldreceptacle"
+        }
+      },
+      {
+        "name": "destination",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/resource/alfworldreceptacle"
+        }
+      },
+      {
+        "name": "actor",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/party/alfworldactor"
+        }
+      },
+      {
+        "name": "room",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "subject",
+          "semantic_type": "node/location/alfworldroom"
+        }
+      },
+      {
+        "name": "source_evidence",
+        "role": "evidence",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "constraints": {
+          "min_length": 1
+        },
+        "value": {
+          "kind": "text",
+          "semantic_type": "property/descriptive"
+        }
+      }
+    ],
+    "policies": [],
+    "failures": [],
+    "external_io": false
+  }
+]

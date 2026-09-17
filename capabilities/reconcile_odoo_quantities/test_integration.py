@@ -1,0 +1,5 @@
+from test_odoo_quantity_capability import test_exact_arithmetic_uses_admitted_outcome_meaning_without_effects
+
+
+def test_exact_calculation_and_admitted_outcomes():
+    test_exact_arithmetic_uses_admitted_outcome_meaning_without_effects()

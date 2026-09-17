@@ -1,0 +1,6 @@
+hg_path = "node/capability/interpretsemanticcontext"
+entry_file = "implementation.py"
+function = "interpret_semantic_context"
+files = ["implementation.py"]
+tests = ["test_implementation.py", "test_integration.py"]
+rationale = "Deterministic exact lexical matching against explicit HG declaration references; returns evidenced proposal-only hypotheses or unresolved. No external I/O or World mutation. Semantic-subject interpretation and modifier reasoning conservatively return unresolved."

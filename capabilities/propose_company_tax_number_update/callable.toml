@@ -1,0 +1,7 @@
+hg_path = "node/capability/proposecompanytaxnumberupdate"
+entry_file = "implementation.py"
+module = "update_candidate"
+function = "propose_company_tax_number_update"
+tests = ["test_integration.py"]
+context_parameters = ["read", "demand"]
+rationale = "HG-aware property update callable. The protected adapter supplies a scoped SemanticWorld read and HG query. HG owns binding, intrinsic update availability, normalisation and typed output validation. Dependency source bytes require exact admission; no World writes occur in this callable."

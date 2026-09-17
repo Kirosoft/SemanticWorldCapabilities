@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ProposedCompanyReference",
+    "axis": "property",
+    "refines": "Identifier",
+    "domain": "app",
+    "authoritative": false,
+    "path": "property/identifier/proposedcompanyreference",
+    "description": "Stable proposed identity for a Company creation request; it does not assert that the Company instance exists.",
+    "value_domain": {
+      "kind": "literal",
+      "primitive": "primitives/text"
+    },
+    "constraints": {
+      "min_length": 1
+    }
+  },
+  {
+    "id": "ProposeCompanyCreation",
+    "axis": "node",
+    "refines": "Capability",
+    "domain": "app",
+    "authoritative": false,
+    "path": "node/capability/proposecompanycreation",
+    "description": "Validates a proposed Company reference, recruited IndustryType and TaxNumber as typed inputs and results; protected interpretation may materialize the HG Company bindings.",
+    "inputs": [
+      {
+        "type": "property/identifier/proposedcompanyreference",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "type": "node/class/industrytype",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "type": "property/identifier/taxnumber",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "type": "property/identifier/proposedcompanyreference",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "type": "node/class/industrytype",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "type": "property/identifier/taxnumber",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "policies": []
+  }
+]

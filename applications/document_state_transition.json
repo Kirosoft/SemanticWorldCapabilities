@@ -1,0 +1,96 @@
+[
+  {
+    "id": "ProposeDocumentStateTransition",
+    "path": "node/capability/proposedocumentstatetransition",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Proposes replacing an evidenced document state association through its admitted HG relationship binding. External provider invocation requires separately selected implementation authority; a successful provider response cannot materialise World facts.",
+    "guarantees": [
+      "Returns the typed replacement State; the validated ingress retains the subject, relationship binding and previous State.",
+      "Cannot authorise or apply its own proposed transition."
+    ],
+    "input_ports": [
+      {
+        "name": "subject",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/document/transactionaldocument"
+          }
+        }
+      },
+      {
+        "name": "binding",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "relationship_binding"
+          }
+        }
+      },
+      {
+        "name": "current_state",
+        "role": "source",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/state"
+          }
+        }
+      },
+      {
+        "name": "next_state",
+        "role": "result",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/state"
+          }
+        }
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "next_state",
+        "role": "result",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        },
+        "value": {
+          "kind": "reference",
+          "target": {
+            "kind": "instance",
+            "type": "node/state"
+          }
+        }
+      }
+    ],
+    "policies": [],
+    "failures": [],
+    "external_io": true
+  }
+]

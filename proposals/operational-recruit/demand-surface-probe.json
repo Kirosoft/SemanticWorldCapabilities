@@ -1,0 +1,110 @@
+{
+  "proposal_id": "60807b5acd9e13df3f1bd77847632d8b966749aea35ef7cdec725c528297b8f2",
+  "fixture": "Disposable HG-validated operational candidate fixture; no production admission",
+  "members": [
+    "query",
+    "classification_group",
+    "authority_domain",
+    "definition",
+    "genus",
+    "guarantee",
+    "relationship_binding",
+    "value",
+    "value_type",
+    "occurrence",
+    "occurrence_type",
+    "occurrence_subject",
+    "relationship_traversal",
+    "scope_subject",
+    "permitted_policy",
+    "denied_policy",
+    "instant"
+  ],
+  "probes": [
+    {
+      "demand": {
+        "classification_group": [
+          "kernel"
+        ]
+      },
+      "hg_ingress_valid": true,
+      "runtime": "refused",
+      "error_type": "HostError",
+      "details": [
+        "INVALID_REQUEST",
+        "Exact definition read requires one definition"
+      ]
+    },
+    {
+      "demand": {
+        "authority_domain": [
+          "system"
+        ]
+      },
+      "hg_ingress_valid": true,
+      "runtime": "refused",
+      "error_type": "HostError",
+      "details": [
+        "INVALID_REQUEST",
+        "Exact definition read requires one definition"
+      ]
+    },
+    {
+      "demand": {
+        "scope_subject": [
+          "invoice-x"
+        ]
+      },
+      "hg_ingress_valid": true,
+      "runtime": "refused",
+      "error_type": "HostError",
+      "details": [
+        "INVALID_REQUEST",
+        "SemanticWorld demand is not admitted by HG"
+      ]
+    },
+    {
+      "demand": {
+        "occurrence": [
+          "invoice-x/supplier_tax_number"
+        ]
+      },
+      "hg_ingress_valid": true,
+      "runtime": "refused",
+      "error_type": "HostError",
+      "details": [
+        "INVALID_REQUEST",
+        "SemanticWorld demand is not admitted by HG"
+      ]
+    },
+    {
+      "demand": {
+        "instant": [
+          "2026-09-11T12:00:00Z"
+        ]
+      },
+      "hg_ingress_valid": true,
+      "runtime": "refused",
+      "error_type": "HostError",
+      "details": [
+        "INVALID_REQUEST",
+        "Exact definition read requires one definition"
+      ]
+    }
+  ],
+  "inspected_sources": [
+    {
+      "path": "semanticworld/read.py",
+      "sha256": "adfab4867274eb8c6b5148a6fc8494fefc62f80736685c3104230c2c87e2627d"
+    },
+    {
+      "path": "semanticworld/general_query.py",
+      "sha256": "ac0d67dbc199bb91dbc1d06daa81c6daa04f27b60994fc7e14703747658559ff"
+    },
+    {
+      "path": "semanticworld/definition_read.py",
+      "sha256": "4232465bb330815176ad6b93974fd32db59aebc46f664c7b4eeaeb935a890b7f"
+    }
+  ],
+  "limits": "These probes expose missing standalone dispatch, not full combinatorial or semantic conformance."
+}

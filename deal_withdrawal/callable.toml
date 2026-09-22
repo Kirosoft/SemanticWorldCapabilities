@@ -1,0 +1,7 @@
+hg_path = "node/capability/proposedealwithdrawal"
+entry_file = "candidate.py"
+module = "deal_withdrawal_candidate"
+function = "propose"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Explicit local-bootstrap candidate: choose a unique lawful withdrawn alternative Deal outcome State from verified recruited context, without applying changes."

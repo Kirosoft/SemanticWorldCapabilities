@@ -1,0 +1,7 @@
+hg_path = "node/capability/proposedealstageadvance"
+entry_file = "candidate.py"
+module = "deal_stage_advance_candidate"
+function = "propose"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Explicit local-bootstrap candidate: choose a unique lawful next workflow/pipeline stage for a Deal from verified recruited context, without applying changes."

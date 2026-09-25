@@ -44,6 +44,7 @@ CANDIDATE_STATUS_TYPES = (
     'node/state/accountstatus/activeaccountstate',
     'node/state/accountstatus/suspendedaccountstate',
     'node/state/accountstatus/closedaccountstate',
+    'node/state/accountstatus/activeaccountstate/underreviewaccountstate',
 )
 
 

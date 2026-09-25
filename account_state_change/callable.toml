@@ -1,0 +1,7 @@
+hg_path = "node/capability/proposeaccountstatechange"
+entry_file = "candidate.py"
+module = "account_state_change_candidate"
+function = "propose"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Explicit local-bootstrap candidate: choose a unique lawful alternative lifecycle status for an Account from verified recruited context, without applying changes."

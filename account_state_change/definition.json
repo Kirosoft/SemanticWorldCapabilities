@@ -1,0 +1,13 @@
+[
+  {
+    "id": "ProposeAccountStateChange",
+    "path": "node/capability/proposeaccountstatechange",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Proposes changing a recruited Account to a lawful alternative lifecycle status by replacing its current State with a lawful alternative, via its admitted \"status\" relationship binding. Current status and binding come from the existing IN_STATE relation. Ambiguous alternatives, incomplete context and an unchanged State are refused. The result grants no execution or commit authority.",
+    "inputs": [{"type": "node/projection", "cardinality": {"min": 1, "max": 1}}],
+    "outputs": [{"type": "node/state", "cardinality": {"min": 1, "max": 1}}]
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ComputeAccountExposureByHolder",
+    "path": "node/capability/computeaccountexposurebyholder",
+    "axis": "node",
+    "domain": "app",
+    "authoritative": false,
+    "refines": "Capability",
+    "description": "Computes a real two-dimensional exposure aggregate over recruited Account holders: for each real holder, the count of accounts by lifecycle status. Grants no execution or commit authority; the result is a computed report, not an authoritative fact.",
+    "inputs": [
+      {
+        "type": "node/projection",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "type": "property/structured/exposuresummary",
+        "cardinality": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ]
+  }
+]

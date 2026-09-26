@@ -1,0 +1,7 @@
+hg_path = "node/capability/computeaccountexposurebyholder"
+entry_file = "candidate.py"
+module = "account_exposure_aggregation_candidate"
+function = "propose"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Generated candidate: Computes a real two-dimensional exposure aggregate over recruited Account holders: for each real holder, the count of accounts by lifecycle status. Grants no execution or commit authority; the result is a computed report, not an authoritative fact."

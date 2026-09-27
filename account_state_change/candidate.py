@@ -32,6 +32,13 @@ State (e.g. account/1002's Active State) as a spurious "lawful
 alternative" for account/1001. This module excludes any candidate
 already the target of an existing IN_STATE fact from a different
 subject before trying it.
+
+Opts into the real declared transition graph
+(`node/process/strategy/accountstatustransitionprocess`) via
+`prepare()`'s own `process_id` parameter -- an undeclared transition is
+refused the same way every other unlawful candidate already is, caught
+by this module's own existing dry-run loop; no change to that loop's own
+logic was needed.
 """
 from hostio import HostError, error_code, fail
 from semanticworld.document_state import prepare
@@ -74,7 +81,8 @@ def propose(projection, *, read, demand):
             continue
         try:
             prepare(read, projection, {state_type: (node.ref,)}, definition_id='ProposeAccountStateChange',
-                subject_type='Account', binding_handle='status')
+                subject_type='Account', binding_handle='status',
+                process_id='AccountStatusTransitionProcess')
         except HostError as error:
             if error_code(error) != 'INVALID_REQUEST':
                 raise

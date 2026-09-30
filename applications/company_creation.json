@@ -22,6 +22,7 @@
     "domain": "app",
     "authoritative": false,
     "path": "node/capability/proposecompanycreation",
+    "commit_binding": {"kind": "company_creation", "result": "property/identifier/proposedcompanyreference"},
     "description": "Validates a proposed Company reference, recruited IndustryType and TaxNumber as typed inputs and results; protected interpretation may materialize the HG Company bindings.",
     "inputs": [
       {

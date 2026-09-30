@@ -6,6 +6,7 @@
     "domain": "app",
     "authoritative": false,
     "path": "node/capability/proposecompanytaxnumberupdate",
+    "commit_binding": {"kind": "tax_number_update", "result": "property/identifier/taxnumber"},
     "description": "Validates an existing PropertyOccurrence and replacement TaxNumber, returning only the canonical typed TaxNumber; protected interpretation applies the binding-preserving replacement.",
     "inputs": [
       {

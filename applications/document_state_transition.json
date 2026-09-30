@@ -6,6 +6,7 @@
     "domain": "app",
     "authoritative": false,
     "refines": "Capability",
+    "commit_binding": {"kind": "replace_state", "result": "node/state", "subject": "node/document/transactionaldocument", "relationship": "edge/in_state"},
     "description": "Proposes replacing an evidenced document state association through its admitted HG relationship binding. External provider invocation requires separately selected implementation authority; a successful provider response cannot materialise World facts.",
     "guarantees": [
       "Returns the typed replacement State; the validated ingress retains the subject, relationship binding and previous State.",

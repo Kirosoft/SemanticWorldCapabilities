@@ -22,6 +22,7 @@
     "domain": "app",
     "authoritative": false,
     "path": "node/capability/proposeinvoicecreation",
+    "commit_binding": {"kind": "invoice_creation", "result": "property/identifier/proposedinvoicereference"},
     "description": "Validates a proposed Invoice reference as a typed result; protected interpretation materializes the Invoice with HG-generated bindings.",
     "inputs": [
       {

@@ -6,6 +6,7 @@
     "domain": "app",
     "authoritative": false,
     "refines": "Capability",
+    "commit_binding": {"kind": "replace_state", "result": "node/state", "subject": "node/document/transactionaldocument", "relationship": "edge/in_state"},
     "description": "Proposes the unique lawful alternative State in a recruited Projection containing one transactional document. Current State and binding come from the existing IN_STATE relation. Ambiguous alternatives, incomplete context and unchanged State are refused. The result grants no execution or commit authority.",
     "inputs": [{"type": "node/projection", "cardinality": {"min": 1, "max": 1}}],
     "outputs": [{"type": "node/state", "cardinality": {"min": 1, "max": 1}}]

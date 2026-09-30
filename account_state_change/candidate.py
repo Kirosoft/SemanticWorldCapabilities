@@ -82,7 +82,7 @@ def propose(projection, *, read, demand):
         try:
             prepare(read, projection, {state_type: (node.ref,)}, definition_id='ProposeAccountStateChange',
                 subject_type='Account', binding_handle='status',
-                process_id='AccountStatusTransitionProcess')
+                process_id='AccountStatusTransitionProcess', assume_confirmable=True)
         except HostError as error:
             if error_code(error) != 'INVALID_REQUEST':
                 raise

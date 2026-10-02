@@ -33,12 +33,11 @@ alternative" for account/1001. This module excludes any candidate
 already the target of an existing IN_STATE fact from a different
 subject before trying it.
 
-Opts into the real declared transition graph
-(`node/process/strategy/accountstatustransitionprocess`) via
-`prepare()`'s own `process_id` parameter -- an undeclared transition is
-refused the same way every other unlawful candidate already is, caught
-by this module's own existing dry-run loop; no change to that loop's own
-logic was needed.
+Applies the declared transition graph of the Capability's own admitted
+`commit_binding.process` via `prepare()`'s `process_id` parameter; this module
+holds no lifecycle identity of its own and refuses when none is declared. An
+undeclared transition is refused the same way every other unlawful candidate
+already is, caught by this module's own existing dry-run loop.
 """
 from hostio import HostError, error_code, fail
 from semanticworld.document_state import prepare
@@ -53,6 +52,16 @@ CANDIDATE_STATUS_TYPES = (
     'node/state/accountstatus/closedaccountstate',
     'node/state/accountstatus/activeaccountstate/underreviewaccountstate',
 )
+
+
+DEFINITION = 'ProposeAccountStateChange'
+
+
+def declared_process(authority):
+    process = resolve(authority, DEFINITION).commit_binding.get('process')
+    if not process:
+        fail('FORBIDDEN', 'UNBOUND: definition declares no governing Process: ' + DEFINITION)
+    return process
 
 
 def propose(projection, *, read, demand):
@@ -75,14 +84,15 @@ def propose(projection, *, read, demand):
     in_state = resolve(read.authority, 'IN_STATE').path
     attached_elsewhere = {edge.target_ref for edge in read.world.world.edges
         if edge.source_ref != subject and is_refinement_of(read.authority, edge.relationship_type, in_state)}
+    process = declared_process(read.authority)
     alternatives = []
     for node in candidates.instances.nodes:
         if not is_refinement_of(read.authority, node.node_type, state_type) or node.ref in attached_elsewhere:
             continue
         try:
-            prepare(read, projection, {state_type: (node.ref,)}, definition_id='ProposeAccountStateChange',
+            prepare(read, projection, {state_type: (node.ref,)}, definition_id=DEFINITION,
                 subject_type='Account', binding_handle='status',
-                process_id='AccountStatusTransitionProcess', assume_confirmable=True)
+                process_id=process, assume_confirmable=True)
         except HostError as error:
             if error_code(error) != 'INVALID_REQUEST':
                 raise

@@ -57,18 +57,5 @@
       },
       "carries": "?B"
     }
-  ],
-  "consequence": [
-    {
-      "atom": "type",
-      "type": "node/document"
-    },
-    {
-      "atom": "relation",
-      "relationship": "edge/combined_from",
-      "to": {
-        "input": "node/document"
-      }
-    }
   ]
 }

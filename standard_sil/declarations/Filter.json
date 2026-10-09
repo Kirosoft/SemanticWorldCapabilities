@@ -48,18 +48,5 @@
       },
       "carries": "?A"
     }
-  ],
-  "consequence": [
-    {
-      "atom": "type",
-      "type": "node/projection"
-    },
-    {
-      "atom": "relation",
-      "relationship": "edge/subset_of",
-      "to": {
-        "input": "node/projection"
-      }
-    }
   ]
 }

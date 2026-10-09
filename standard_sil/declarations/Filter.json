@@ -1,0 +1,65 @@
+{
+  "id": "Silfilter",
+  "axis": "node",
+  "domain": "app",
+  "authoritative": false,
+  "refines": "SelectionCombinator",
+  "path": "node/capability/silfilter",
+  "description": "Keeps the members of a multiplicity for which an open predicate morphism port holds.",
+  "guarantees": [
+    "The result is a sub-multiplicity of the input and preserves member identity.",
+    "The predicate port is satisfied by any capability yielding a truth condition."
+  ],
+  "groups": [
+    "standard-sil"
+  ],
+  "relationship_bindings": [],
+  "inputs": [
+    {
+      "type": "node/capability",
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      },
+      "bridge": {
+        "inputs": [
+          "?A"
+        ],
+        "outputs": [
+          "property/flag"
+        ]
+      }
+    },
+    {
+      "type": "node/projection",
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      },
+      "carries": "?A"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "node/projection",
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      },
+      "carries": "?A"
+    }
+  ],
+  "consequence": [
+    {
+      "atom": "type",
+      "type": "node/projection"
+    },
+    {
+      "atom": "relation",
+      "relationship": "edge/subset_of",
+      "to": {
+        "input": "node/projection"
+      }
+    }
+  ]
+}

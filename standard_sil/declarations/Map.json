@@ -1,0 +1,52 @@
+{
+  "id": "Silmap",
+  "axis": "node",
+  "domain": "app",
+  "authoritative": false,
+  "refines": "MemberwiseCombinator",
+  "path": "node/capability/silmap",
+  "description": "Applies an open morphism port to each member of a multiplicity, yielding the multiplicity of results.",
+  "guarantees": [
+    "Every member of the input multiplicity is paired with exactly one result.",
+    "The morphism port is satisfied by any capability whose contract matches it."
+  ],
+  "groups": [
+    "standard-sil"
+  ],
+  "relationship_bindings": [],
+  "inputs": [
+    {
+      "type": "node/capability",
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      },
+      "bridge": {
+        "inputs": [
+          "?A"
+        ],
+        "outputs": [
+          "?B"
+        ]
+      }
+    },
+    {
+      "type": "node/projection",
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      },
+      "carries": "?A"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "node/projection",
+      "cardinality": {
+        "min": 1,
+        "max": 1
+      },
+      "carries": "?B"
+    }
+  ]
+}

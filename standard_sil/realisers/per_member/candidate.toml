@@ -1,0 +1,6 @@
+hg_path = "node/capability/combinator/memberwise_combinator"
+entry_file = "implementation.py"
+function = "realise"
+files = ["implementation.py"]
+tests = ["test_implementation.py"]
+rationale = "Host realiser declaration: the admitted identity of the trusted runtime control that realises this combinator class. The body is never executed."

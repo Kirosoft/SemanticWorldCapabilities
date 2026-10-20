@@ -6,7 +6,7 @@
     "domain": "app",
     "authoritative": false,
     "refines": "Capability",
-    "commit_binding": {"kind": "replace_state", "result": "node/state", "subject": "node/aggregate/deal", "relationship": "edge/in_state", "binding": "outcome"},
+    "commit_binding": {"kind": "replace_state", "result": "node/state", "subject": "node/aggregate/deal", "relationship": "edge/in_state", "binding": "outcome", "process": "node/process/strategy/dealoutcometransitionprocess"},
     "description": "Proposes the unique lawful alternative commercial outcome State for a recruited Deal, via its admitted \"outcome\" relationship binding. Current outcome and binding come from the existing IN_STATE relation. Ambiguous alternatives, incomplete context and an unchanged State are refused. The result grants no execution or commit authority.",
     "inputs": [{"type": "node/projection", "cardinality": {"min": 1, "max": 1}}],
     "outputs": [{"type": "node/state", "cardinality": {"min": 1, "max": 1}}]

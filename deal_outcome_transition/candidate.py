@@ -1,34 +1,18 @@
-"""Choose one lawful recruited alternative Deal outcome State, without
-invocation or commit. Mirrors document_state/candidate.py's structure,
-targeting Deal's "outcome" relationship binding instead of a
-TransactionalDocument's implicit one."""
-from hostio import HostError, error_code, fail
-from semanticworld.document_state import prepare
-from semanticworld.inspection import is_refinement_of, resolve
-from semanticworld.interpretation.projection_value import validate
-from semanticworld.read import recruit
-from semanticworld.reference import plain
+"""Realise the State the recruited Strategy requires for a Deal: the worker is handed the recruited subject occurrence (its single typed input) and a trusted view of the World narrowed by the host to the
+required State type and its refinements (`demand["refinements_of"]`). It selects the occurrence of that State; it does not recruit, does not read a Projection, and does not choose the target: the requirement is the
+consequence Recruitment selected for this step. The host independently types and validates the returned reference (by the occurrence's own type) and the state overlay checks the transition law."""
+from hostio import fail
+from semanticworld.inspection import is_refinement_of
 
 
-def propose(projection, *, read, demand):
-    projection = validate(read, projection)
-    selected = recruit(read, plain(projection.request), result_bound=projection.result_bound,
-        work_bound=projection.work_bound)
-    if not selected.complete:
-        fail('INVALID_REQUEST', 'State choice requires complete recruited context')
-    state_type = resolve(read.authority, 'node/state').path
-    alternatives = []
-    for node in selected.instances.nodes:
-        if not is_refinement_of(read.authority, node.node_type, state_type):
-            continue
-        try:
-            prepare(read, projection, {state_type: (node.ref,)}, definition_id='ProposeDealOutcomeTransition',
-                subject_type='Deal', binding_handle='outcome')
-        except HostError as error:
-            if error_code(error) != 'INVALID_REQUEST':
-                raise
-        else:
-            alternatives.append(node.ref)
-    if len(alternatives) != 1:
-        fail('INVALID_REQUEST', 'Recruited context must contain exactly one lawful alternative State')
-    return alternatives[0]
+def propose(deal, *, read, demand):
+    required = tuple(demand.get('refinements_of', ())) if isinstance(demand, dict) else ()
+    if len(required) != 1:
+        fail('INVALID_REQUEST', 'The recruited State requirement is not visible to the worker')
+    edges = tuple(edge for edge in read.world.world.edges if edge.relationship_type == 'edge/in_state')
+    unavailable = {edge.target_ref for edge in edges}  # every State already occupied by some subject
+    candidates = tuple(node.ref for node in read.world.world.nodes
+        if node.ref in read.eligible_refs and node.ref not in unavailable and is_refinement_of(read.authority, node.node_type, required[0]))
+    if len(candidates) != 1:
+        fail('INVALID_REQUEST', 'The required State has no single unattached occurrence: ' + required[0])
+    return candidates[0]

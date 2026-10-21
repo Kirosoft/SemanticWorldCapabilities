@@ -1,39 +1,24 @@
-"""Candidate behavior only; recruiting/proposing an alternative State grants
-no execution or commit authority. Reuses the real e2e fixture
-(tests/test_account_state_change_e2e.py) rather than a parallel synthetic
-one -- admission only requires this file to exist with a real
-test_-prefixed function; it is never executed by admission itself."""
+"""Candidate behaviour only; selecting an occurrence of the required State grants no execution or commit authority. Reuses the real e2e fixture (tests/test_account_state_change_e2e.py).
+The worker is handed the recruited subject and the narrowed view (`demand`) the host builds from the effective output requirement."""
 from candidate import propose
-from semanticworld.interpretation.projection_value import lower
 from test_account_state_change_e2e import fixture
 
-ACCOUNT = 'node/aggregate/account'
-ACCOUNT_STATUS = 'node/state/accountstatus'
-ACCOUNT_1001 = 'seed://app/accounting/reference/account/1001'
+SUBJECT = 'seed://app/accounting/reference/account/1001'
+REQUIRED = 'node/state/accountstatus/suspendedaccountstate'
 
 
-def subject_pinning_demand():
-    # Account has more than one real seeded instance (unlike Deal), so a
-    # multi-type "definition" demand would recruit every Account and make
-    # prepare()'s default subject resolution ambiguous. A general_query
-    # pinning "account" to one real instance recruits exactly that Account
-    # (plus its real current status), keeping the subject unambiguous.
-    return {'query': {
-        'variables': [
-            {'name': 'account', 'type': ACCOUNT, 'instance': ACCOUNT_1001},
-            {'name': 'status', 'type': ACCOUNT_STATUS},
-        ],
-        'relationships': [{'source': 'account', 'relationship': 'edge/in_state', 'target': 'status'}],
-        'project': ['account']}}
-
-
-def test_candidate_returns_the_unique_lawful_alternative_status():
-    # candidate.py discovers alternative States itself (CANDIDATE_STATUS_TYPES),
-    # not from `demand` -- the real selected-callable dispatch always sets
-    # `demand` equal to `projection.request`, so it cannot carry a separately
-    # chosen value; `demand` is passed here only to match that real signature.
+def test_candidate_selects_the_occurrence_of_the_required_state():
     store, config, reader, apply = fixture()
     read = reader()
-    projection = lower(read, subject_pinning_demand())
-    alternative = propose(projection, read=read, demand={})
-    assert alternative == 'seed://app/accounting/reference/account/1001-status/suspended'
+    selected = propose(SUBJECT, read=read, demand={'instances_of': ['node/aggregate/account', REQUIRED], 'refinements_of': [REQUIRED]})
+    assert selected == 'seed://app/accounting/reference/account/1001-status/suspended'
+
+
+def test_candidate_refuses_when_no_single_requirement_is_visible():
+    store, config, reader, apply = fixture()
+    try:
+        propose(SUBJECT, read=reader(), demand={'instances_of': ['node/aggregate/account', 'node/state']})
+    except Exception as error:
+        assert 'requirement' in str(error)
+    else:
+        raise AssertionError('a worker without a visible requirement must refuse')

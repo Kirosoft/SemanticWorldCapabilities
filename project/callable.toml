@@ -1,0 +1,7 @@
+hg_path = "node/capability/project"
+entry_file = "candidate.py"
+module = "project_candidate"
+function = "project"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Experiment-local Project realiser: delegates to existing SemanticWorld Recruitment and preserves its read-backed Projection evidence."

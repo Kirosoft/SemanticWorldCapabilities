@@ -1,0 +1,34 @@
+[
+  {
+    "id": "RefersToCriterion",
+    "axis": "property",
+    "refines": "Reference",
+    "path": "property/reference/referstocriterion",
+    "domain": "app",
+    "authoritative": false,
+    "description": "Definition reference restricting a Projection to REFERS_TO participation.",
+    "guarantees": ["Names the admitted REFERS_TO relationship definition, not an occurrence or instance."],
+    "value_domain": {
+      "kind": "reference",
+      "target_kind": "type_definition",
+      "target": "edge/refers_to"
+    }
+  },
+  {
+    "id": "RestrictRelationships",
+    "axis": "node",
+    "refines": "Capability",
+    "path": "node/capability/restrictrelationships",
+    "domain": "app",
+    "authoritative": false,
+    "description": "Restricts a witnessed Projection using an admitted relationship-definition criterion.",
+    "groups": ["test"],
+    "inputs": [
+      {"type": "node/projection", "cardinality": {"min": 1, "max": 1}, "participation": "flow"},
+      {"type": "property/reference/referstocriterion", "cardinality": {"min": 1, "max": 1}, "role": "criterion", "participation": "dependency"}
+    ],
+    "outputs": [
+      {"type": "node/projection", "cardinality": {"min": 1, "max": 1}}
+    ]
+  }
+]

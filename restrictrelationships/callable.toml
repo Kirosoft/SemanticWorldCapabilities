@@ -1,0 +1,7 @@
+hg_path = "node/capability/restrictrelationships"
+entry_file = "candidate.py"
+module = "restrictrelationships_candidate"
+function = "restrict_relationships"
+tests = ["candidate_test.py"]
+context_parameters = ["read", "demand"]
+rationale = "Experiment-local sibling Capability for fixed REFERS_TO restriction; execution is a separate gate."

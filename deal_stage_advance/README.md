@@ -10,8 +10,11 @@ generic transition law those Capabilities already use
 (`semanticworld/document_state.py::prepare`), targeting Deal's `"state"`
 binding instead.
 
-Requires exactly one existing stage fact on the subject Deal and exactly
-one lawful alternative State recruited into the Projection; ambiguous
-alternatives, incomplete context, and an unchanged State are refused. The
+Takes the recruited subject Deal as its single typed input and a trusted view
+narrowed by the host to the State the recruited Strategy requires
+(`demand["refinements_of"]`), exactly as the outcome worker does
+(TYPED-WORKER-SEMANTIC-INPUT-001; DEAL-WORKFLOW-TYPED-INPUT-001). It selects that
+State's single unattached occurrence; it does not recruit, read a Projection or
+choose the target. A requirement with no such occurrence is refused. The
 result grants no execution or commit authority — only the protected SWOS
 commit path can make a proposed replacement authoritative.

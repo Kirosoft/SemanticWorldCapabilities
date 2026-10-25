@@ -1,5 +1,4 @@
-"""Candidate behaviour only; selecting an occurrence of the required State grants no execution or commit authority. Reuses the real e2e fixture (tests/test_deal_outcome_transition_e2e.py).
-The worker is handed the recruited subject and the narrowed view (`demand`) the host builds from the effective output requirement."""
+"""Candidate behaviour only; reporting the selected State grants no execution or commit authority. Reuses the real e2e fixture (tests/test_deal_outcome_transition_e2e.py)."""
 from candidate import propose
 from test_deal_outcome_transition_e2e import fixture
 
@@ -7,11 +6,9 @@ SUBJECT = 'seed://app/accounting/reference/deal/17'
 REQUIRED = 'node/state/dealoutcomestate/wondealstate'
 
 
-def test_candidate_selects_the_occurrence_of_the_required_state():
+def test_candidate_reports_the_selected_state():
     store, config, reader, apply = fixture()
-    read = reader()
-    selected = propose(SUBJECT, read=read, demand={'instances_of': ['node/aggregate/deal', REQUIRED], 'refinements_of': [REQUIRED]})
-    assert selected == 'seed://app/accounting/reference/deal/17-outcome/won'
+    assert propose(SUBJECT, read=reader(), demand={'instances_of': ['node/aggregate/deal', REQUIRED], 'refinements_of': [REQUIRED]}) == {'state': REQUIRED}
 
 
 def test_candidate_refuses_when_no_single_requirement_is_visible():

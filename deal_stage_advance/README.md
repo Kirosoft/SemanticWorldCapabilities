@@ -18,3 +18,5 @@ State's single eligible occurrence, whether or not other Deals occupy it; it doe
 choose the target. A requirement with no such occurrence is refused. The
 result grants no execution or commit authority — only the protected SWOS
 commit path can make a proposed replacement authoritative.
+
+**HG-STATE-VALUE-REPRESENTATION-L2-001:** the worker reports the issued State consequence as `{"state": S}` and selects no occurrence; the generic interpreter realises it as the World's canonical value of S (adopted or materialised) and the governed commit applies it.

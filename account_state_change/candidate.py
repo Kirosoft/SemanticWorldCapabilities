@@ -9,10 +9,9 @@ def propose(account, *, read, demand):
     required = tuple(demand.get('refinements_of', ())) if isinstance(demand, dict) else ()
     if len(required) != 1:
         fail('INVALID_REQUEST', 'The recruited State requirement is not visible to the worker')
-    edges = tuple(edge for edge in read.world.world.edges if edge.relationship_type == 'edge/in_state')
-    unavailable = {edge.target_ref for edge in edges}  # every State already occupied by some subject
+    # Occupancy is not selection: one State value may be the current state of any number of subjects (HG sources_per_target 0..*).
     candidates = tuple(node.ref for node in read.world.world.nodes
-        if node.ref in read.eligible_refs and node.ref not in unavailable and is_refinement_of(read.authority, node.node_type, required[0]))
+        if node.ref in read.eligible_refs and is_refinement_of(read.authority, node.node_type, required[0]))
     if len(candidates) != 1:
-        fail('INVALID_REQUEST', 'The required State has no single unattached occurrence: ' + required[0])
+        fail('INVALID_REQUEST', 'The required State has no single occurrence: ' + required[0])
     return candidates[0]

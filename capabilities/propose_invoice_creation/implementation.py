@@ -1,7 +1,7 @@
 """Propose an Invoice reference; never allocate numbers or write facts."""
 from semanticworld.interpretation.capability import validate_capability_arguments
 from hostio import fail
-from semanticworld.company_creation import occupied_identities
+from semanticworld.creation_helpers import occupied_identities
 from semanticworld.inspection import resolve
 from semanticworld.invoice_creation import INVOICE_REFERENCE
 from semanticworld.store import freeze

@@ -4,4 +4,4 @@ module = "company_creation_candidate"
 function = "propose_company_creation"
 tests = ["test_integration.py"]
 context_parameters = ["read", "demand"]
-rationale = "HG-aware typed Company creation result. The host supplies read-only World context and Industry Recruitment. HG owns subject types, bindings, create constraints and normalisation. Exact local admission is temporary; this candidate cannot commit World changes or admit meaning."
+rationale = "HG-aware Company creation proposal: returns the recruited IndustryType. Generic protected creation (create_instance values) derives the identity and establishes the industry and tax number under HG. Exact local admission is temporary; this candidate cannot commit World changes or admit meaning."

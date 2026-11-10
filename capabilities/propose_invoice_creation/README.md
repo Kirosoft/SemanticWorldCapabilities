@@ -1,5 +1,10 @@
 # ProposeInvoiceCreation
 
+Current contract (14.5): the candidate returns the selected World `TransactionalDocumentKind`
+it receives; generic protected creation establishes the Invoice, its identity, its generated
+bindings and its initial lifecycle state. See [INVOICE_CREATION.md](../../applications/INVOICE_CREATION.md).
+The text below is the earlier contract's record.
+
 Functional candidate for the [HG-based application proposal](../../applications/INVOICE_CREATION.md).
 It returns an ordinary typed Invoice subject; it neither assigns an InvoiceNumber nor commits
 an instance. SWOS must explicitly admit and select the exact bundle before SWC

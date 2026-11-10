@@ -4,4 +4,4 @@ module = "invoice_creation_candidate"
 function = "propose_invoice_creation"
 tests = ["test_integration.py"]
 context_parameters = ["read", "demand"]
-rationale = "Explicit local candidate producing an inert Invoice creation request under HG; generated numbering and constrained commit remain protected host responsibilities."
+rationale = "Explicit local candidate proposing the selected transactional document kind of a new Invoice under HG; identity, generated numbering, initial state and constrained commit remain the protected generic creation route."

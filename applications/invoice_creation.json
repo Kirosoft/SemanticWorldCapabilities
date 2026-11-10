@@ -1,32 +1,23 @@
 [
   {
-    "id": "ProposedInvoiceReference",
-    "axis": "property",
-    "refines": "Identifier",
-    "domain": "app",
-    "authoritative": false,
-    "path": "property/identifier/proposedinvoicereference",
-    "description": "Stable proposed identity for an Invoice creation request; it does not assert that the Invoice instance exists.",
-    "value_domain": {
-      "kind": "literal",
-      "primitive": "primitives/text"
-    },
-    "constraints": {
-      "min_length": 1
-    }
-  },
-  {
     "id": "ProposeInvoiceCreation",
     "axis": "node",
     "refines": "Capability",
     "domain": "app",
     "authoritative": false,
     "path": "node/capability/proposeinvoicecreation",
-    "commit_binding": {"kind": "invoice_creation", "result": "property/identifier/proposedinvoicereference"},
-    "description": "Validates a proposed Invoice reference as a typed result; protected interpretation materializes the Invoice with HG-generated bindings.",
+    "commit_binding": {
+      "kind": "create_instance",
+      "result": "node/class/transactionaldocumentkind",
+      "instance_type": "node/document/transactionaldocument/invoice",
+      "links": [
+        {"binding": "kind", "target_type": "node/class/transactionaldocumentkind"}
+      ]
+    },
+    "description": "Validates the selected transactional document kind of a new Invoice as its typed result; generic protected creation establishes the Invoice, its HG-generated bindings and its initial lifecycle state.",
     "inputs": [
       {
-        "type": "property/identifier/proposedinvoicereference",
+        "type": "node/class/transactionaldocumentkind",
         "cardinality": {
           "min": 1,
           "max": 1
@@ -35,7 +26,7 @@
     ],
     "outputs": [
       {
-        "type": "property/identifier/proposedinvoicereference",
+        "type": "node/class/transactionaldocumentkind",
         "cardinality": {
           "min": 1,
           "max": 1

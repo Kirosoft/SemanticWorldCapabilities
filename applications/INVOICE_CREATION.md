@@ -1,5 +1,21 @@
 # Invoice creation proposal
 
+## Current contract: generic HG creation (HG-GENERATION-LAW-001 step 14.5, 10 Nov 2026)
+
+`ProposeInvoiceCreation` declares the generic `create_instance` commit binding. Its one input
+and its typed result are the selected World `TransactionalDocumentKind` the new Invoice is
+classified as; the binding links it through Invoice's `kind` relationship. No caller proposes
+an Invoice identity and `ProposedInvoiceReference` is withdrawn.
+
+The protected generic creation route (`semanticworld.instance_creation`) derives the Invoice's
+`created:*` identity from the request commitment, including the protected request id (a replay
+derives the same Invoice, a new request a new one), enters the Process-declared initial
+lifecycle state, generates every generated binding (`id`, `invoice_number`) through HG's
+generation law with provenance, and records the allocation snapshot with the commit. The
+Invoice-specific route `semanticworld.invoice_creation` is removed.
+
+Everything below records the earlier Invoice-specific contract and its historical evidence.
+
 `invoice_creation.json` proposes the application Capability `ProposeInvoiceCreation`
 using existing HG Invoice and subject meaning. It admits no foundational
 vocabulary. Explicit temporary SWOS application and implementation admission are

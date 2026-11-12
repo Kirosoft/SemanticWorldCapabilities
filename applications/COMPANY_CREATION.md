@@ -1,5 +1,17 @@
 # Company creation proposal
 
+## Current contract: generic HG creation (10 Nov 2026)
+
+`ProposeCompanyCreation` declares the generic `create_instance` commit binding with
+`values`: its inputs are the recruited `IndustryType` (realised as the Company's
+reference-valued `industry` binding) and the `TaxNumber` (its `tax_number` binding,
+normalised by HG); its typed result is the selected `IndustryType`. No caller proposes a
+Company identity and `ProposedCompanyReference` is withdrawn: generic protected creation
+derives the identity from the request commitment, including the protected request id. The
+Company-specific route `semanticworld.company_creation` is removed.
+
+Everything below records the earlier Company-specific contract and its historical evidence.
+
 `company_creation.json` describes the proposed application Capability
 `ProposeCompanyCreation`. It refines HG's existing Capability and uses
 existing Company, IndustryType, TaxNumber and Effect meaning. It introduces no

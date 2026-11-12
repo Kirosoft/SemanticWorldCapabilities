@@ -1,5 +1,10 @@
 # ProposeCompanyCreation
 
+Current contract: the candidate returns the recruited `IndustryType`; generic protected
+creation establishes the Company, its identity, its industry and its tax number. See
+[COMPANY_CREATION.md](../../applications/COMPANY_CREATION.md). The text below is the
+earlier contract's record.
+
 Functional Python lowering of the application meaning in
 `../../applications/company_creation.json`. It takes an HG Company subject with a
 proposed identity, a recruited existing IndustryType reference and a TaxNumber.

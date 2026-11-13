@@ -1,55 +1,13 @@
 """Execution functions for the accounting package, linked to the HG paths they realise.
 
-Each function is the physical computation of one admitted Capability. It is
-handed a World view and a grounding (input type -> occurrence ref) and returns
-the single occurrence it produces. It reads nothing else and writes nothing:
-where the result lands is the business of the Capability's effect law and the
-Edge realiser, both declared in HG.
+Each function is the physical computation of one admitted Capability: it is handed typed values only and returns the
+value its declaration types. Where the result lands is the business of the Capability's consequence and commit binding,
+declared in HG. Capabilities whose result the declaration itself defines have no function here (swi.intrinsic).
 """
-from hg.relationships import SemanticNode
-from semanticworld.swi.library import realiser, world_realiser
-from semanticworld.swi.realisers import Produced, grounded
+from semanticworld.swi.library import realiser
 
-
-def _state(result_type: str, identity: str) -> Produced:
-    """A State occurrence of the declared result type, named by the issuing witness (replay-stable)."""
-    return Produced(SemanticNode(f"swi://{identity}/{result_type.rsplit('/', 1)[-1]}", result_type))
-
-
-@world_realiser("node/capability/qualifydeal")
-def qualify_deal(world, grounding, identity):
-    grounded(grounding, "node/aggregate/deal")
-    grounded(grounding, "node/state/dealworkflowstate/newdealstate")
-    return _state("node/state/dealworkflowstate/qualifieddealstate", identity)
-
-
-@world_realiser("node/capability/windeal")
-def win_deal(world, grounding, identity):
-    grounded(grounding, "node/aggregate/deal")
-    grounded(grounding, "node/state/dealworkflowstate/qualifieddealstate")
-    return _state("node/state/dealoutcomestate/wondealstate", identity)
-
-
-@world_realiser("node/capability/withdrawdeal")
-def withdraw_deal(world, grounding, identity):
-    grounded(grounding, "node/aggregate/deal")
-    grounded(grounding, "node/event/dealsignal/withdrawalsignal")
-    return _state("node/state/dealoutcomestate/withdrawndealstate", identity)
-
-
-@world_realiser("node/capability/linkdeal")
-def link_deal(world, grounding, identity):
-    """The result is the Deal occurrence itself: relating two existing occurrences mints nothing."""
-    grounded(grounding, "node/party/company")
-    deal = grounded(grounding, "node/aggregate/deal")
-    return Produced(world.node(deal))
-
-
-@world_realiser("node/capability/registertaxinvoice")
-def register_tax_invoice(world, grounding, identity):
-    """The result is the input occurrence under the refined type; identity is preserved by construction."""
-    invoice = grounded(grounding, "node/document/transactionaldocument/invoice")
-    return Produced(SemanticNode(invoice, "node/document/transactionaldocument/invoice/taxinvoice"))
+# The state transitions, the Deal link and the TaxInvoice refinement have no body here: their result is their admitted
+# HG declaration's, realised by swi (INTRINSIC-REALISATION-001).
 
 
 # ---- value realisers: a library. Each function realises an admitted Capability; its meaning is
@@ -88,39 +46,6 @@ def subtract_quantities(accumulator: "property/quantity#accumulator", member: "p
 def settle_quantity(quantity: "property/quantity"):
     """Morphism: one settlement step, a Quantity reduced by one settlement unit of 250 and floored at zero. Endomorphic on Quantity, with zero as its fixed point. Commits nothing on its own; an iteration combinator drives it to closure."""
     return str(max(Decimal(quantity) - 250, Decimal(0)))
-
-
-# ---- the authorisation diamond: three state morphisms, no Python beyond naming the result ----
-@world_realiser("node/capability/assessrisk")
-def assess_risk(world, grounding, identity):
-    grounded(grounding, "node/aggregate/deal")
-    grounded(grounding, "node/state/dealworkflowstate/qualifieddealstate")
-    grounded(grounding, "node/state/dealriskstate/riskpendingstate")
-    return _state("node/state/dealriskstate/riskacceptedstate", identity)
-
-
-@world_realiser("node/capability/verifycontract")
-def verify_contract(world, grounding, identity):
-    grounded(grounding, "node/aggregate/deal")
-    grounded(grounding, "node/state/dealworkflowstate/qualifieddealstate")
-    grounded(grounding, "node/state/dealcontractstate/contractunverifiedstate")
-    return _state("node/state/dealcontractstate/contractverifiedstate", identity)
-
-
-@world_realiser("node/capability/authorisedeal")
-def authorise_deal(world, grounding, identity):
-    for port in ("node/aggregate/deal", "node/state/dealworkflowstate/qualifieddealstate",
-                 "node/state/dealriskstate/riskacceptedstate", "node/state/dealcontractstate/contractverifiedstate"):
-        grounded(grounding, port)
-    return _state("node/state/dealoutcomestate/authoriseddealstate", identity)
-
-
-@world_realiser("node/capability/markinvoicepaid")
-def mark_invoice_paid(world, grounding, identity):
-    grounded(grounding, "node/document/transactionaldocument/invoice")
-    grounded(grounding, "node/state/invoicepaymentstate/awaitingpaymentstate")
-    grounded(grounding, "node/event/paymentreceived")
-    return _state("node/state/invoicepaymentstate/paidstate", identity)
 
 
 # ---- LIFT-001 fixtures: two morphisms that were never designed to work together ----

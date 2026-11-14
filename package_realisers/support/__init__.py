@@ -2,30 +2,12 @@
 STRATEGY-001 transfer: nothing in swi/ knows this package exists."""
 from decimal import Decimal
 
-from hg.relationships import SemanticNode
-from semanticworld.swi.library import realiser, world_realiser
-from semanticworld.swi.realisers import Produced, grounded
+from semanticworld.swi.library import realiser
 
-TICKET = "node/aggregate/ticket"
 Q = "property/quantity"
 
-
-def _state(result_type: str, identity: str) -> Produced:
-    return Produced(SemanticNode(f"swi://{identity}/{result_type.rsplit('/', 1)[-1]}", result_type))
-
-
-@world_realiser("node/capability/triageticket")
-def triage_ticket(world, grounding, identity):
-    grounded(grounding, TICKET)
-    grounded(grounding, "node/state/ticketstate/openticketstate")
-    return _state("node/state/ticketstate/triagedticketstate", identity)
-
-
-@world_realiser("node/capability/resolveticket")
-def resolve_ticket(world, grounding, identity):
-    grounded(grounding, TICKET)
-    grounded(grounding, "node/state/ticketstate/triagedticketstate")
-    return _state("node/state/ticketstate/resolvedticketstate", identity)
+# TriageTicket and ResolveTicket have no body here: a state transition is its admitted HG declaration's, realised by swi
+# (INTRINSIC-REALISATION-001).
 
 
 @realiser("node/capability/sumeffort")

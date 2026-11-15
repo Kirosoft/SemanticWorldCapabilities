@@ -1,0 +1,6 @@
+hg_path = "node/capability/proposecompanytaxnumberupdate"
+entry_file = "candidate.py"
+function = "propose"
+files = ["candidate.py"]
+tests = ["candidate_test.py"]
+rationale = "ENGINE-3C-001: a value function invoked through SWC; it returns the TaxNumber input unchanged. SemanticWorld checks ingress and egress against HG and prepares the protected change; no read, demand or World access crosses SWC."

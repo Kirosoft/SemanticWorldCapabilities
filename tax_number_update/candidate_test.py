@@ -3,4 +3,4 @@ from candidate import propose
 
 
 def test_canonical_value_is_returned_without_a_named_output_envelope():
-    assert propose('tax-1', 'GB999', read=None, demand=None) == 'GB999'
+    assert propose('tax-1', 'GB999') == 'GB999'

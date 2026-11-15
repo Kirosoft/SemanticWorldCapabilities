@@ -10,7 +10,7 @@ import unittest
 
 import hg
 from hg.authority import load_verified_authority
-from swos.authority.application import extend
+from semanticworld.authority_base import extend
 from implementation import reconcile
 
 
